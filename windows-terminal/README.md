@@ -71,13 +71,17 @@ oh-my-posh init pwsh --config "$HOME\Documents\PowerShell\blue-path.omp.json" | 
 
 ## 4. VS Code 可选配置
 
-在 VS Code 的 `settings.json` 中加入：
+如果还需要 VS Code 集成终端使用同一字体，打开用户 `settings.json`，加入：
 
 ```json
 {
   "terminal.integrated.fontFamily": "Comic Xiaolai Nerd Font Mono"
 }
 ```
+
+保存后按 `Ctrl+Shift+P`，执行 `Developer: Reload Window`。
+
+> 如果由 Agent 执行，修改 VS Code 用户设置前必须先询问用户是否需要同步修改；得到确认后再操作。
 
 ## 注意
 
