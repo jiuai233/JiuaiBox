@@ -4,7 +4,7 @@
 
 - PowerShell 7
 - Oh My Posh
-- Meatshell Mono Nerd Font
+- ComicShannsMono + 小赖字体融合版（含 Nerd Font 图标）
 - 蓝色 Powerline 路径块
 - 绿色 `❯` 命令提示符
 
@@ -12,8 +12,10 @@
 
 ```text
 resources/
-├─ MeatshellMonoNerdFontMono-Regular.ttf  # 已加入 Nerd Font 图标的字体
-└─ blue-path.omp.json                     # Oh My Posh 主题
+├─ ComicXiaolaiNerdFontMono-Regular.ttf   # 英文 ComicShannsMono，中文小赖字体
+├─ blue-path.omp.json                     # Oh My Posh 主题
+├─ LICENSE-COMICSHANNS-NERD-FONT.md
+└─ LICENSE-XIAOLAI-OFL.txt
 ```
 
 ## 1. 安装 Oh My Posh
@@ -26,7 +28,7 @@ winget install JanDeDobbeleer.OhMyPosh -s winget
 
 ## 2. 安装字体
 
-打开 `resources/MeatshellMonoNerdFontMono-Regular.ttf`，点击“安装”。
+打开 `resources/ComicXiaolaiNerdFontMono-Regular.ttf`，点击“安装”。
 
 然后打开 Windows Terminal：
 
@@ -37,7 +39,7 @@ winget install JanDeDobbeleer.OhMyPosh -s winget
 选择：
 
 ```text
-MeatshellMono Nerd Font Mono
+Comic Xiaolai Nerd Font Mono
 ```
 
 ## 3. 安装主题
@@ -73,7 +75,7 @@ oh-my-posh init pwsh --config "$HOME\Documents\PowerShell\blue-path.omp.json" | 
 
 ```json
 {
-  "terminal.integrated.fontFamily": "MeatshellMono Nerd Font Mono"
+  "terminal.integrated.fontFamily": "Comic Xiaolai Nerd Font Mono"
 }
 ```
 
