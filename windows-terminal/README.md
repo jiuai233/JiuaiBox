@@ -12,7 +12,7 @@
 
 ```text
 resources/
-├─ ComicXiaolaiNerdFontMono-Regular.ttf   # 英文 ComicShannsMono，中文小赖字体
+├─ ComicXiaolaiNerdFontMono-Regular.otf   # 英文 ComicShannsMono，中文小赖字体
 ├─ blue-path.omp.json                     # Oh My Posh 主题
 ├─ LICENSE-COMICSHANNS-NERD-FONT.md
 └─ LICENSE-XIAOLAI-OFL.txt
@@ -28,7 +28,7 @@ winget install JanDeDobbeleer.OhMyPosh -s winget
 
 ## 2. 安装字体
 
-打开 `resources/ComicXiaolaiNerdFontMono-Regular.ttf`，点击“安装”。
+打开 `resources/ComicXiaolaiNerdFontMono-Regular.otf`，点击“安装”。
 
 然后打开 Windows Terminal：
 
