@@ -1,116 +1,66 @@
+## Windows Shell
+
+Default environment: Windows 11 with PowerShell 7 (`pwsh`).
+
+- Use PowerShell syntax; use Bash only after confirming a Linux shell.
+- Prefer single quotes for complex `rg` patterns. Use `rg -g` for file globs; expand wildcard directories first.
+- Pipe multiline Python via a PowerShell here-string to `python -`; never use Bash heredocs.
+- Wrap `foreach` / `if` output in `$()` / `@()` or assign it before piping.
+- Report shell/environment mismatches or command failures immediately; never switch shells or syntax silently.
+
 ## CodeGraph
 
-When the actual project root contains `.codegraph/`, use CodeGraph before
-grep/find or raw source reads.
+When the actual project root contains `.codegraph/`, use CodeGraph before grep/find or raw source reads.
 
-- Default to one `codegraph_explore` call for architecture, unknown locations,
-  related symbols, bugs, and call flows.
-- For an exact known file range, use `codegraph_node(file, offset, limit)` when
-  already exposed, or:
-  `codegraph node --file <file> --offset <line> --limit <count>`.
-- For symbol locations only, MCP uses `codegraph_search`; the CLI equivalent is
-  `codegraph query`, never `codegraph search`.
-- Use callers/callees/impact only when that targeted result is actually needed.
-  Do not chain search -> node -> grep for information already returned by
-  `codegraph_explore`.
-- Treat CodeGraph source as authoritative unless it reports staleness,
-  unsupported coverage, or insufficient results. Do not redundantly verify it
-  with grep/read.
-- After edits, allow auto-sync briefly. If a staleness warning remains, run
-  `codegraph sync`; if only specific files are flagged, read only those files.
-- In monorepos or nested repositories, confirm which indexed project root
-  covers the target and verify it with `codegraph status`. Use `projectPath`
-  or CLI `--path` when querying another indexed root. Do not assume a parent
-  index includes nested repositories.
-- If no index exists, do not initialize one automatically; use bounded `rg`,
-  `Select-String`, or targeted reads.
-- Keep CodeGraph output bounded: use `maxFiles` / CLI `--max-files` for
-  `codegraph_explore`, `limit` / CLI `--limit` for symbol queries, and
-  `offset` + `limit` for known file ranges. Start narrow and expand only when
-  the returned evidence is insufficient.
+- Start with one bounded `codegraph_explore` for architecture, unknown locations, related symbols, bugs, or flows.
+- Read an exact range with `codegraph_node(file, offset, limit)` or `codegraph node --file <file> --offset <line> --limit <count>`.
+- For symbol locations only, use MCP `codegraph_search` or CLI `codegraph query`; never `codegraph search`.
+- Use callers/callees/impact only when needed. Do not re-query information already returned by `codegraph_explore`.
+- Trust CodeGraph unless it reports stale, unsupported, or insufficient coverage; do not redundantly verify with grep/read.
+- After edits, allow auto-sync briefly. If still stale, run `codegraph sync`; read only specifically flagged files.
+- In monorepos/nested repositories, verify the indexed root with `codegraph status`; use `projectPath` or `--path` explicitly.
+- If no index exists, do not initialize one; use bounded `rg`, `Select-String`, or targeted reads.
+- Bound output with `maxFiles` / `--max-files`, `limit` / `--limit`, and `offset` + `limit`. Expand only when evidence is insufficient.
 
-Please handle code investigation and implementation in small, recoverable,
-low-output stages.
+## Investigation and Workspace Safety
 
-## Investigation
-
-The main thread owns planning, evidence synthesis, root-cause decisions, edits, and final validation conclusions.
-
-Do simple or sequential investigation in the main thread. Do not create a subagent merely to read a known file or line range.
-
-Use read-only subagents only for independent, clearly bounded questions. Each subagent must:
-
-- investigate one concrete question;
-- stay within an explicit scope;
-- never modify files;
-- return concise findings with paths, lines, and symbols;
-- separate evidence from inference;
-- say when evidence is insufficient.
-
-Investigate before editing.
- Confirm the observed behavior, supporting evidence, likely root cause, modification scope, and remaining uncertainty.
-
-Do not mix unresolved investigation with broad refactors, API changes, bulk formatting, renaming, or unrelated cleanup.
-
-## Workspace Safety
-
-Before editing, inspect `git status` and relevant diffs.
-
-Do not overwrite, revert, or delete the user's existing work. Do not use destructive Git commands. Preserve pre-existing changes and keep edits minimal.
+- Work in small, recoverable, low-output stages. The main thread owns planning, evidence synthesis, root-cause decisions, edits, and final validation.
+- Keep simple/sequential investigation in the main thread; never spawn a subagent just to read known files or lines.
+- Use read-only subagents only for independent, bounded questions. They must not edit, must separate evidence from inference, and must return concise paths/lines/symbols or state that evidence is insufficient.
+- Before editing, confirm behavior, evidence, likely root cause, scope, and uncertainty; inspect `git status` and relevant diffs.
+- Preserve existing work. Never use destructive Git commands or mix unresolved investigation with broad refactors, API changes, formatting, renaming, or cleanup.
 
 ## Unexpected Errors
 
-If a command, tool, path, permission, dependency, CodeGraph query, test, or build fails, you may immediately use a safe bounded alternative.
+On any command, tool, path, permission, dependency, CodeGraph, test, or build failure, immediately report what failed, the concise error, side effects, the fallback used, and whether coverage is weaker.
 
-Always tell the user:
+Safe bounded fallbacks may proceed. Never hide failures, silently repeat the same approach, silently escalate permissions, or present partial results as complete. Stop before any fallback that materially increases risk, scope, or side effects.
 
-- what failed;
-- the concise error;
-- whether it caused side effects;
-- what alternative was used;
-- whether the alternative has weaker coverage.
+## Output, Changes, and Validation
 
-Never hide failures, silently repeat the same broken approach, silently increase permissions, or present partial fallback results as complete validation.
-
-Stop and explain before using a fallback that significantly increases risk, scope, or side effects.
-
-## Output Control
-
-Keep searches and reads bounded. Prefer scoped paths, file filters, result limits, line ranges, `rg -l`, `rg -c`, `head`, `tail`, and `Select-Object -First`.
-
-Avoid unrestricted recursive searches, full large-file reads, dependency-directory scans, and complete build or test logs.
-
-Keep direct output under about 100 lines by default. Write large logs or generated output to a file and report only its path, size or counts, key excerpts, and conclusions.
-
-## Changes and Validation
-
-Keep changes small and limited to the confirmed problem. Do not refactor unrelated code or introduce unsupported abstractions.
-
-After editing, inspect the diff for unintended files, overwritten user changes, formatting noise, debug code, and temporary files.
-
-Run the smallest relevant validation first. Expand only when necessary. Do not run full-repository tests, full builds, or all end-to-end tests by default.
-
-Clearly distinguish:
-
-- passed checks;
-- failed checks;
-- fallback checks;
-- blocked checks;
-- checks not run;
-- remaining manual verification.
+- Bound searches and reads with scoped paths, filters, limits, line ranges, `rg -l`, `rg -c`, and `Select-Object -First`. Avoid unrestricted recursion, dependency scans, large-file dumps, and full logs.
+- Keep direct output under about 100 lines. Put large logs/generated output in a file and report its path, size/counts, key excerpts, and conclusions.
+- Make only confirmed, minimal changes; avoid unrelated refactors and unsupported abstractions.
+- After editing, inspect the diff for unintended files, overwritten work, formatting noise, debug code, and temporary files.
+- Run the smallest relevant validation first; expand only when needed. Do not default to full-repository builds/tests/E2E.
+- Distinguish passed, failed, fallback, blocked, and unrun checks, plus remaining manual verification.
 
 ## Progress and Reporting
 
-Use `CODEX_PROGRESS.md` only for substantial multi-stage work, cross-thread handoff, explicit user requests, or repositories that already use it.
+Use `CODEX_PROGRESS.md` only for substantial multi-stage work, cross-thread handoff, explicit requests, or repositories already using it.
 
-At the end of an important stage, briefly report:
+At important stage boundaries, briefly report completed work, evidence/conclusion, modified files, validation, failures/fallbacks, unresolved issues, and next step. Stop when investigation drifts, failures repeat, output grows, evidence is insufficient, or the next step is separate or materially riskier.
 
-- completed work;
-- key evidence and conclusion;
-- modified files;
-- validation;
-- unexpected errors and fallbacks;
-- unresolved issues;
-- next step.
+## Git Commit Style
 
-Stop expanding the task when investigation drifts, failures repeat, output grows, evidence is insufficient, or the next step is a separate or significantly riskier task.
+Use `<type>: <中文描述>` with one of:
+
+- `feat`: 新增功能
+- `fix`: 修复普通缺陷
+- `hotfix`: 修复生产环境紧急问题
+- `refactor`: 重构代码，不改变业务行为
+- `test`: 新增或调整测试
+- `docs`: 修改文档
+- `chore`: 依赖、构建、配置等维护工作
+- `perf`: 性能优化
+- `style`: 仅格式调整，不改变逻辑
