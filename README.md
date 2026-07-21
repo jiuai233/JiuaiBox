@@ -6,5 +6,6 @@
 
 - [Codex 全局 AGENTS.md 配置](./codex-agents/README.md)
 - [Windows Terminal 个性化配置](./windows-terminal/README.md)
+- [Clash Verge SSH 直连规则](./clash-rules/README.md)
 
 以后每项内容单独放在自己的目录中，避免资源混在一起。

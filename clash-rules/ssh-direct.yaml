@@ -1,0 +1,14 @@
+# Profile Enhancement Rules Template for Clash Verge
+
+prepend:
+  - PROCESS-NAME,ssh.exe,DIRECT
+  - PROCESS-NAME,scp.exe,DIRECT
+  - PROCESS-NAME,sftp.exe,DIRECT
+  - PROCESS-NAME,plink.exe,DIRECT
+  - PROCESS-NAME,putty.exe,DIRECT
+  - DST-PORT,22,DIRECT
+  - RULE-SET,private-ip,DIRECT,no-resolve
+
+append: []
+
+delete: []
