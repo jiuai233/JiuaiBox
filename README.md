@@ -5,6 +5,7 @@
 ## 内容
 
 - [Codex 全局 AGENTS.md 配置](./codex-agents/README.md)
+- [macOS Codex 全局 AGENTS.md 配置](./codex-agents-macos/README.md)
 - [Windows Terminal 个性化配置](./windows-terminal/README.md)
 - [Clash Verge SSH 直连规则](./clash-rules/README.md)
 
