@@ -29,6 +29,8 @@ test('新电脑恢复配置、主题、固定插件与普通技能目录', t => 
   const agent = restore(fixture(t));
   const config = JSON.parse(readFileSync(join(agent, 'settings.json')));
   assert.equal(config.theme, 'prism');
+  const overrides = JSON.parse(readFileSync(join(agent, 'models.json'))).providers['openai-codex'].modelOverrides;
+  for (const id of ['gpt-6.1-sol', 'gpt-6-luna', 'gpt-6-astra']) assert.equal(overrides[id].contextWindow, 500000);
   assert.equal(config.packages.length, 15);
   assert(config.packages.every(p => /@(?:\d+\.\d+\.\d+|[a-f0-9]{40})$/.test(p)));
   assert.equal(readFileSync(join(agent, 'system.md'), 'utf8'), readFileSync(join(root, 'agent/system.md'), 'utf8'));
