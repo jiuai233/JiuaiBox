@@ -1,0 +1,8 @@
+{
+  "memoryMode": "policy-only",
+  "reviewEnabled": false,
+  "flushOnCompact": false,
+  "flushOnShutdown": false,
+  "memoryOverflowStrategy": "reject",
+  "autoConsolidate": false
+}

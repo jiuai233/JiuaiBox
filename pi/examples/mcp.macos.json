@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "meatshell": {
+      "command": "/Applications/meatshell.app/Contents/MacOS/meatshell",
+      "args": [
+        "mcp",
+        "serve"
+      ],
+      "exposure": "codemode-deferred"
+    }
+  }
+}

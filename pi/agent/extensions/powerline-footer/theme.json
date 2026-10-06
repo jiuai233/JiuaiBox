@@ -1,0 +1,13 @@
+{
+  "colors": {
+    "model": "accent",
+    "path": "mdLink",
+    "thinkingHigh": "rainbow",
+    "thinkingXhigh": "rainbow",
+    "thinkingMax": "rainbow",
+    "gitClean": "success",
+    "gitDirty": "warning",
+    "separator": "dim",
+    "border": "borderMuted"
+  }
+}

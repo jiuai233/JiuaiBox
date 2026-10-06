@@ -1,0 +1,4 @@
+interface:
+  display_name: "Engineering Change Guidelines"
+  short_description: "Apply risk-based rigor to safe code changes"
+  default_prompt: "Use $engineering-change-guidelines to make the smallest safe change and validate it with rigor proportional to risk."

@@ -1,0 +1,12 @@
+.work/
+node_modules/
+.env
+.env.*
+auth.json
+sessions/
+backups/
+models-store.json
+mcp-auth.json
+*.sqlite*
+*.db*
+*.log

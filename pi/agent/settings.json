@@ -1,0 +1,72 @@
+{
+  "lastChangelogVersion": "1.0.4",
+  "theme": "prism",
+  "defaultProvider": "openai-codex",
+  "defaultModel": "gpt-6.1-sol",
+  "defaultThinkingLevel": "high",
+  "compactionModel": {
+    "model": "opencode-go/deepseek-v4.1-flash"
+  },
+  "packages": [
+    "npm:pi-web-access@0.37.0",
+    "npm:pi-midrun-compact@0.1.2",
+    "npm:pi-compaction-model@0.1.0",
+    "npm:@juicesharp/rpiv-todo@2.12.0",
+    "npm:@juicesharp/rpiv-ask-user-question@2.12.0",
+    "npm:pi-subagents@0.76.1",
+    "npm:@gotgenes/pi-permission-system@40.0.0",
+    "npm:pi-powerline-footer@0.19.1",
+    "npm:oh-my-tps@0.3.2",
+    "npm:pi-antigravity@0.9.0",
+    "npm:pi-hermes-memory@0.9.8",
+    "npm:@narumitw/pi-plan-mode@0.59.0",
+    "npm:@pi-kaush/pi-tool-call-markers@0.3.11",
+    "git:github.com/ayghri/i-have-adhd@839872f9d1cd634fed642b4589ce7226199cc15f",
+    "git:github.com/jiuai233/pi-model-fast@5498f8510c90effffb52c35ba480e33a18b8c93e"
+  ],
+  "subagents": {
+    "defaultModel": "openai-codex/gpt-6.1-sol",
+    "agentOverrides": {
+      "scout": {
+        "thinking": "high",
+        "fast": true
+      },
+      "researcher": {
+        "thinking": "high",
+        "fast": true
+      },
+      "worker": {
+        "thinking": "high",
+        "fast": true
+      },
+      "reviewer": {
+        "thinking": "high",
+        "fast": true
+      },
+      "delegate": {
+        "thinking": "high",
+        "fast": true
+      },
+      "oracle": {
+        "thinking": "high",
+        "fast": true
+      },
+      "evidence-auditor": {
+        "thinking": "high",
+        "fast": true
+      }
+    },
+    "defaultThinking": "high"
+  },
+  "enabledModels": [
+    "antigravity/gemini-3.8-flash",
+    "openai-codex/gpt-6-astra",
+    "opencode-go/deepseek-v4.1-flash",
+    "xai/grok-4.7",
+    "openai-codex/gpt-6-luna",
+    "openai-codex/gpt-6.1-sol"
+  ],
+  "hideThinkingBlock": true,
+  "tuiMode": "fullscreen",
+  "showCacheMissNotices": true
+}

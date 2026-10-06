@@ -4,6 +4,8 @@
 
 ## 内容
 
+- [Pi 提示词、插件与换机配置](./pi/README.md)
+
 - [Codex 全局 AGENTS.md 配置](./codex-agents/README.md)
 - [macOS Codex 全局 AGENTS.md 配置](./codex-agents-macos/README.md)
 - [Windows Terminal 个性化配置](./windows-terminal/README.md)

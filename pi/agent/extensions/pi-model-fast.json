@@ -1,0 +1,8 @@
+{
+  "version": 1,
+  "enabledModels": {
+    "openai-codex/gpt-6-astra": false,
+    "openai-codex/gpt-6-luna": true,
+    "openai-codex/gpt-6.1-sol": true
+  }
+}
