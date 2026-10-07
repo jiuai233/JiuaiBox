@@ -14,11 +14,11 @@
     "npm:@juicesharp/rpiv-todo@2.12.0",
     "npm:@juicesharp/rpiv-ask-user-question@2.12.0",
     "npm:pi-subagents@0.76.1",
-    "npm:@gotgenes/pi-permission-system@40.0.0",
+    "npm:@gotgenes/pi-permission-system@40.0.1",
     "npm:pi-powerline-footer@0.19.1",
     "npm:oh-my-tps@0.3.2",
     "npm:pi-antigravity@0.9.0",
-    "npm:@narumitw/pi-plan-mode@0.59.0",
+    "npm:@narumitw/pi-plan-mode@0.59.2",
     "npm:@pi-kaush/pi-tool-call-markers@0.3.11",
     "git:github.com/ayghri/i-have-adhd@839872f9d1cd634fed642b4589ce7226199cc15f",
     "git:github.com/jiuai233/pi-model-fast@5498f8510c90effffb52c35ba480e33a18b8c93e"

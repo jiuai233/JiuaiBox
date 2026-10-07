@@ -2,8 +2,8 @@
   "allowBrowserCookies": true,
   "provider": "all",
   "workflow": "auto-summary",
-  "summaryModel": "opencode-go/deepseek-v4.1-flash",
-  "openaiSearchModel": "gpt-5.6-luna",
+  "summaryModel": "opencode-go/deepseek-v4.1-flash:low",
+  "openaiSearchModel": "gpt-6.1-sol",
   "ssrf": {
     "allowRanges": ["198.18.0.0/15"]
   }
