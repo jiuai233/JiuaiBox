@@ -7,7 +7,7 @@ const source = resolve(dirname(fileURLToPath(import.meta.url)), '../agent');
 const target = join(homedir(), '.pi/agent');
 const backup = join(target, 'backups', `jiuaibox-${Date.now()}`);
 const files = [
-  'settings.json', 'system.md', 'models.json', 'hermes-memory-config.json',
+  'settings.json', 'system.md', 'models.json',
   'web-search.json', 'themes/prism.json',
   'extensions/pi-midrun-compact/config.json',
   'extensions/pi-permission-system/config.json',
