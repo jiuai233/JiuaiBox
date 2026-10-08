@@ -1,5 +1,5 @@
 {
-  "lastChangelogVersion": "1.0.4",
+  "lastChangelogVersion": "1.1.0",
   "theme": "prism",
   "defaultProvider": "openai-codex",
   "defaultModel": "gpt-6.1-sol",
@@ -9,7 +9,7 @@
   },
   "packages": [
     "npm:pi-web-access@0.37.0",
-    "npm:pi-midrun-compact@0.1.2",
+    "npm:pi-loop-compact@0.1.0",
     "npm:pi-compaction-model@0.1.0",
     "npm:@juicesharp/rpiv-todo@2.12.0",
     "npm:@juicesharp/rpiv-ask-user-question@2.12.0",

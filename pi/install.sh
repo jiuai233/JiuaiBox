@@ -25,14 +25,6 @@ if [[ "$MODE" == "--config-only" ]]; then exit 0; fi
 while IFS= read -r source; do
   pi install "$source"
 done < <(node -e 'for (const source of JSON.parse(require("fs").readFileSync(process.argv[1])).packages) console.log(source)' "$ROOT/agent/settings.json")
-COMPACT_DIR="$PI_CODING_AGENT_DIR/npm/node_modules/pi-midrun-compact"
-PATCH="$ROOT/patches/pi-midrun-compact-runtime.patch"
-if git -C "$COMPACT_DIR" apply --check "$PATCH"; then
-  git -C "$COMPACT_DIR" apply "$PATCH"
-elif ! git -C "$COMPACT_DIR" apply --reverse --check "$PATCH"; then
-  echo '运行中压缩补丁与已安装源码不匹配。' >&2
-  exit 1
-fi
 pi update --models
 SKILLS_VERSION="$(node -p "JSON.parse(require('fs').readFileSync(process.argv[1])).skillsCli" "$ROOT/versions.json")"
 npx --yes "skills@$SKILLS_VERSION" add https://open.feishu.cn \

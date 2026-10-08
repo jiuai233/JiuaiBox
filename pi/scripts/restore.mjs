@@ -9,7 +9,6 @@ const backup = join(target, 'backups', `jiuaibox-${Date.now()}`);
 const files = [
   'settings.json', 'system.md', 'models.json',
   'web-search.json', 'themes/prism.json',
-  'extensions/pi-midrun-compact/config.json',
   'extensions/pi-permission-system/config.json',
   'extensions/subagent/config.json', 'extensions/pi-model-fast.json',
   'extensions/powerline-footer/theme.json',

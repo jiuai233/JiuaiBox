@@ -19,13 +19,13 @@ pi
 
 - **交互与提示词**：全局 `system.md`、高思考等级、全屏界面、隐藏思考正文；ADHD 输出模式由插件控制。
 - **配色**：Prism 深色主题，粉色强调、青色链接、紫色代码与彩虹思考状态栏。
-- **插件**：搜索与网页读取、Google 搜索及图片生成、任务清单、结构化提问、子代理、计划模式、权限管理、压缩模型、运行中压缩、状态栏、吞吐显示、工具标记和模型快速模式。
+- **插件**：搜索与网页读取、Google 搜索及图片生成、任务清单、结构化提问、子代理、计划模式、权限管理、压缩模型、工具循环中途压缩、状态栏、吞吐显示、工具标记和模型快速模式。
 - **技能**：工程修改规范、界面设计与审查技能、产物文案检查；飞书认证与表格技能从官方源安装。
-- **细节设置**：OpenAI Codex 的 `gpt-6.1-sol`、`gpt-6-luna`、`gpt-6-astra` 本地上下文窗口设为 500k；90% 上下文压缩水位、独立子代理上下文与搜索策略。
+- **细节设置**：OpenAI Codex 的 `gpt-6.1-sol`、`gpt-6-luna`、`gpt-6-astra` 本地上下文窗口设为 500k；85% 上下文压缩水位、独立子代理上下文与搜索策略。
 
 500k 为 Pi 本地窗口覆盖值，服务端支持范围以提供商实际限制为准。
 
-Pi 固定为 `1.0.4`；14 个插件固定至当前 npm 版本或 Git 提交。安装完成后应用运行中压缩续跑回调补丁，保留本机行为。`versions.json` 与 `agent/settings.json` 是版本清单。npm 的传递依赖仍由包管理器解析，此配置不提供完整依赖树锁定。
+Pi 固定为 `1.1.0`；14 个插件固定至当前 npm 版本或 Git 提交。`versions.json` 与 `agent/settings.json` 是版本清单。npm 的传递依赖仍由包管理器解析，此配置不提供完整依赖树锁定。
 
 ## 认证与权限
 
@@ -48,7 +48,7 @@ bash pi/install.sh --config-only
 安装脚本使用 `~/.pi/agent/`，不读取自定义 `PI_CODING_AGENT_DIR`。若已有 Pi 与固定版本不同，脚本在写配置前停止；退出所有 Pi 会话后可安装基线版本：
 
 ```bash
-npm install -g --ignore-scripts @earendil-works/pi-coding-agent@1.0.4
+npm install -g --ignore-scripts @earendil-works/pi-coding-agent@1.1.0
 ```
 
 修改主题后通过 `/settings` → `Theme` 选择，或执行 `/reload`。第三方技能来源与许可证见 [THIRD_PARTY.md](THIRD_PARTY.md)。

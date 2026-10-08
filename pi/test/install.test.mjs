@@ -88,19 +88,3 @@ test('发布目录的 JSON、技能引用和公开检查通过', () => {
     for (const ref of refs) assert(existsSync(join(skills, name, ref)), `${name}/${ref}`);
   }
 });
-
-test('压缩补丁可应用、可检测已应用状态并与本机回调语义一致', t => {
-  const dir = fixture(t), patch = join(root, 'patches/pi-midrun-compact-runtime.patch');
-  const text = readFileSync(patch, 'utf8');
-  assert(text.includes('+      onComplete: async (_result, signal?: AbortSignal) => {'));
-  assert(text.includes('+        await new Promise<void>((resolve) => setImmediate(resolve));'));
-  assert(text.includes('+          if (signal?.aborted) {'));
-  // 用 Git 还原补丁的旧侧行，验证安装脚本使用的正反向检测。
-  const context = text.split('\n').filter(line => /^[ -]/.test(line) && !line.startsWith('---')).map(line => line.slice(1)).join('\n') + '\n';
-  write(join(dir, 'src/runtime.ts'), context);
-  const apply = (...args) => spawnSync('git', ['-C', dir, 'apply', ...args, patch], { encoding: 'utf8' });
-  assert.equal(apply('--check').status, 0);
-  assert.equal(apply().status, 0);
-  assert.equal(apply('--reverse', '--check').status, 0);
-  assert.notEqual(apply('--check').status, 0);
-});
