@@ -1,15 +1,19 @@
 ---
 name: engineering-change-guidelines
-description: Use when modifying, fixing, reviewing, or refactoring existing code. Apply a lightweight workflow by default, and escalate to Spec -> Plan -> Execution -> Acceptance only for blocking ambiguity, cross-module changes, public interfaces, migrations, security, concurrency, architecture, or other high-risk work.
+description: Use when modifying, fixing, reviewing, or refactoring existing code. Read-only reviews report findings and evidence. Code changes use a lightweight workflow by default; escalate for blocking ambiguity, public interfaces, migrations, security, concurrency, data integrity, architecture, or material compatibility risk.
 ---
 
 # Engineering Change Guidelines
 
 Follow applicable `AGENTS.md` instructions for environment, investigation, safety, diff review, validation, and reporting. This skill only selects the process depth required for a code change.
 
+## Read-only Review
+
+Inspect the requested scope and report findings, evidence, and verification gaps. Keep implementation and plan-file creation for an explicitly authorized change task.
+
 ## Default: Lightweight
 
-Use this workflow unless an escalation condition applies:
+For authorized code changes, use this workflow unless an escalation condition applies:
 
 1. Confirm the requested behavior and affected path.
 2. For bugs, trace the root cause and relevant callers.
@@ -26,7 +30,7 @@ Use the full workflow when any condition applies:
 
 - Missing information blocks safe implementation.
 - The change affects public APIs, schemas, migrations, authentication, security, concurrency, or data integrity.
-- The change crosses modules or alters architecture.
+- The change alters architecture, or crosses modules with material compatibility, data-integrity, or architectural risk.
 - Compatibility, release, or rollback requires an explicit plan.
 - The user explicitly requests a formal plan or acceptance process.
 
@@ -50,7 +54,7 @@ MISSING_SPEC_DETECTED
 
 ### Plan
 
-Create `implementation_plan.md` with:
+Record the plan in the response by default. Create or update `implementation_plan.md` when the user requests a persistent plan or the task requires a durable handoff. Include:
 
 - affected files or modules
 - implementation order
