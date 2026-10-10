@@ -1,0 +1,4 @@
+interface:
+  display_name: "Tech Manual Style"
+  short_description: "Warm-paper technical manual design system with semantic colours and plate-style figures"
+  default_prompt: "Use $tech-manual-style to design this document, page or diagram in the technical-manual style."
