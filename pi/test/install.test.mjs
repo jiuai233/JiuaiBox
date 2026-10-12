@@ -34,7 +34,7 @@ test('新电脑恢复配置、主题、固定插件与普通技能目录', t => 
   assert.equal(config.packages.length, 14);
   assert(config.packages.every(p => /@(?:\d+\.\d+\.\d+|[a-f0-9]{40})$/.test(p)));
   assert.equal(readFileSync(join(agent, 'system.md'), 'utf8'), readFileSync(join(root, 'agent/system.md'), 'utf8'));
-  assert.equal(readdirSync(join(agent, 'skills')).length, 11);
+  assert.equal(readdirSync(join(agent, 'skills')).length, 10);
   for (const name of readdirSync(join(agent, 'skills'))) assert(!lstatSync(join(agent, 'skills', name)).isSymbolicLink());
   assert(existsSync(join(agent, 'themes/prism.json')));
   assert(!existsSync(join(agent, 'auth.json')));
