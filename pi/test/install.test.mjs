@@ -40,6 +40,22 @@ test('新电脑恢复配置、主题、固定插件与普通技能目录', t => 
   assert(!existsSync(join(agent, 'auth.json')));
 });
 
+test('恢复内置代码定义插件，保留原始入口并备份已有副本', t => {
+  const home = fixture(t), agent = restore(home);
+  const plugin = 'extensions/pi-read-symbol';
+  const manifest = JSON.parse(readFileSync(join(agent, plugin, 'package.json')));
+  assert.equal(manifest.version, '0.1.0');
+  assert.deepEqual(manifest.pi.extensions, ['./src/index.ts']);
+  for (const file of ['package.json', 'README.md', 'src/index.ts', 'src/symbols.ts']) {
+    assert.equal(readFileSync(join(agent, plugin, file), 'utf8'), readFileSync(join(root, 'agent', plugin, file), 'utf8'));
+  }
+  write(join(agent, plugin, 'src/index.ts'), 'previous plugin');
+  restore(home);
+  const backup = readdirSync(join(agent, 'backups'))[0];
+  assert.equal(readFileSync(join(agent, 'backups', backup, plugin, 'src/index.ts'), 'utf8'), 'previous plugin');
+  assert.equal(readFileSync(join(agent, plugin, 'src/index.ts'), 'utf8'), readFileSync(join(root, 'agent', plugin, 'src/index.ts'), 'utf8'));
+});
+
 test('已有同名文件备份，认证、会话、私人记忆和非管理文件不变', t => {
   const home = fixture(t), agent = join(home, '.pi/agent');
   write(join(agent, 'settings.json'), '{"theme":"light"}');

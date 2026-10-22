@@ -11,7 +11,7 @@ const files = [
   'web-search.json', 'themes/prism.json',
   'extensions/pi-permission-system/config.json',
   'extensions/subagent/config.json', 'extensions/pi-model-fast.json',
-  'extensions/powerline-footer/theme.json',
+  'extensions/powerline-footer/theme.json', 'extensions/pi-read-symbol',
   ...readdirSync(join(source, 'skills')).map(name => `skills/${name}`),
 ];
 

@@ -19,13 +19,13 @@ pi
 
 - **交互与提示词**：全局 `system.md`、高思考等级、全屏界面、隐藏思考正文；ADHD 输出模式由插件控制。
 - **配色**：Prism 深色主题，粉色强调、青色链接、紫色代码与彩虹思考状态栏。
-- **插件**：搜索与网页读取、Google 搜索及图片生成、任务清单、结构化提问、子代理、计划模式、权限管理、压缩模型、工具循环中途压缩、状态栏、吞吐显示、工具标记和模型快速模式。
+- **插件**：搜索与网页读取、Google 搜索及图片生成、任务清单、结构化提问、子代理、计划模式、权限管理、压缩模型、工具循环中途压缩、状态栏、吞吐显示、工具标记、模型快速模式和按名称读取代码定义的 `read_symbol`。
 - **技能**：工程修改规范、界面设计与审查技能；飞书认证与表格技能从官方源安装。
 - **细节设置**：OpenAI Codex 的 `gpt-6.1-sol`、`gpt-6-luna`、`gpt-6-astra` 本地上下文窗口设为 500k；85% 上下文压缩水位、独立子代理上下文与搜索策略。
 
 500k 为 Pi 本地窗口覆盖值，服务端支持范围以提供商实际限制为准。
 
-Pi 固定为 `1.1.0`；14 个插件固定至当前 npm 版本或 Git 提交。`versions.json` 与 `agent/settings.json` 是版本清单。npm 的传递依赖仍由包管理器解析，此配置不提供完整依赖树锁定。
+Pi 固定为 `1.1.0`；14 个插件固定至当前 npm 版本或 Git 提交，另内置 `pi-read-symbol@0.1.0` 源码。`versions.json` 与 `agent/settings.json` 是安装版本清单；内置插件版本见 `agent/extensions/pi-read-symbol/package.json`。npm 的传递依赖仍由包管理器解析，此配置不提供完整依赖树锁定。
 
 ## 认证与权限
 
@@ -34,6 +34,16 @@ Pi 固定为 `1.1.0`；14 个插件固定至当前 npm 版本或 Git 提交。`v
 权限配置沿用个人开发设置：多数工具与外部目录操作直接允许；`.env`、SSH 密钥目录、Pi `auth.json` 及 `rm -rf` 命令受限制，`sudo` 请求确认。此配置适合个人可信工作区，启用第三方项目之前需审查代码与权限。
 
 模型快速模式与子代理 `fast` 设置保留。可在 `/fast` 中调整。
+
+## 代码定义读取
+
+`pi-read-symbol` 恢复到 `~/.pi/agent/extensions/pi-read-symbol/` 后自动加载，新增 `read_symbol` 工具，内置工具保持不变。该工具依赖 PATH 中的 `ast-grep`，也可通过环境变量 `AST_GREP_BIN` 指定可执行文件；安装脚本不安装此依赖。
+
+- `grep` 搜索关键词、调用位置和引用。
+- `read_symbol` 按名称读取函数、方法和类的定义，或列出文件大纲。
+- `read` 读取配置、文档和任意行段，或按截断提示补读超长定义。
+
+插件说明见 [pi-read-symbol](agent/extensions/pi-read-symbol/README.md)，源码见 [jiuai233/pi-read-symbol](https://github.com/jiuai233/pi-read-symbol)。感谢群友分享原始实现与使用说明。
 
 ## 已有配置与备份
 
