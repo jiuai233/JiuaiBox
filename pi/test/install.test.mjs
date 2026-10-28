@@ -32,9 +32,9 @@ test('新电脑恢复配置、主题、固定插件与普通技能目录', t => 
   const overrides = JSON.parse(readFileSync(join(agent, 'models.json'))).providers['openai-codex'].modelOverrides;
   for (const id of ['gpt-6.1-sol', 'gpt-6-luna', 'gpt-6-astra']) assert.equal(overrides[id].contextWindow, 500000);
   assert.equal(config.packages.length, 14);
-  assert(config.packages.every(p => /@(?:\d+\.\d+\.\d+|[a-f0-9]{40})$/.test(p)));
+  assert(config.packages.every(p => /@(?:\d+\.\d+\.\d+|[a-f0-9]{40})$/.test(p.source ?? p)));
   assert.equal(readFileSync(join(agent, 'system.md'), 'utf8'), readFileSync(join(root, 'agent/system.md'), 'utf8'));
-  assert.equal(readdirSync(join(agent, 'skills')).length, 10);
+  assert.equal(readdirSync(join(agent, 'skills')).length, 9);
   for (const name of readdirSync(join(agent, 'skills'))) assert(!lstatSync(join(agent, 'skills', name)).isSymbolicLink());
   assert(existsSync(join(agent, 'themes/prism.json')));
   assert(!existsSync(join(agent, 'auth.json')));
@@ -74,11 +74,11 @@ test('已有技能软链接与失效软链接被备份，不修改原链接目�
   const home = fixture(t), agent = join(home, '.pi/agent'), original = join(home, 'external-skill');
   write(join(original, 'SKILL.md'), 'original skill');
   mkdirSync(join(agent, 'skills'), { recursive: true });
-  symlinkSync(original, join(agent, 'skills/engineering-change-guidelines'), 'dir');
+  symlinkSync(original, join(agent, 'skills/frontend-design'), 'dir');
   symlinkSync(join(home, 'missing'), join(agent, 'skills/better-ui'), 'dir');
   restore(home);
   assert.equal(readFileSync(join(original, 'SKILL.md'), 'utf8'), 'original skill');
-  assert(!lstatSync(join(agent, 'skills/engineering-change-guidelines')).isSymbolicLink());
+  assert(!lstatSync(join(agent, 'skills/frontend-design')).isSymbolicLink());
   assert(!lstatSync(join(agent, 'skills/better-ui')).isSymbolicLink());
   const backup = join(agent, 'backups', readdirSync(join(agent, 'backups'))[0]);
   assert(lstatSync(join(backup, 'skills/better-ui')).isSymbolicLink());
