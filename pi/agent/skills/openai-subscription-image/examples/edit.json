@@ -1,0 +1,10 @@
+{
+  "prompt": "Change the blue paper bird in {{ref:source}} to warm red paper. Preserve the same origami folds, silhouette, pose, camera, table and light.",
+  "prompt_mode": "authored",
+  "generation": {
+    "task_mode": "edit",
+    "references": [
+      {"id": "source", "path": "source.png", "role": "original image to recolor"}
+    ]
+  }
+}

@@ -1,0 +1,167 @@
+/*
+ * Tech Manual Style — design tokens
+ * Derived from the Pi Durable Technical Manual (1.0.3, 2026.10).
+ * Colour values were sampled from the rendered PDF; tints are the observed fills.
+ *
+ * Fonts (Google Fonts):
+ * <link rel="preconnect" href="https://fonts.googleapis.com">
+ * <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ * Chinese text: add &family=Noto+Serif+SC:wght@400;500 to the URL if readers may lack Songti (non-Apple).
+ * <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Manrope:wght@600;700&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&family=Source+Serif+4:ital,opsz,wght@1,8..60,400;1,8..60,500&display=swap">
+ */
+
+:root {
+  /* ---------- Typefaces: one job each ---------- */
+  --font-display: "Manrope", "Inter", "PingFang SC", "Noto Sans SC", "Microsoft YaHei", system-ui, sans-serif;        /* titles, logo */
+  --font-body: "Source Sans 3", "Source Sans Pro", "PingFang SC", "Noto Sans SC", "Microsoft YaHei", system-ui, sans-serif; /* running text, tables */
+  --font-voice: "Source Serif 4", "Source Serif Pro", Georgia, "Songti SC", "Noto Serif SC", "STSong", serif;   /* italic: deks, captions, annotations */
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, "PingFang SC", "Noto Sans SC", monospace; /* labels, numbers, code */
+
+  /* ---------- Type scale (screen) ---------- */
+  --fs-display: clamp(2.75rem, 6vw, 4rem); /* cover title */
+  --fs-h1: clamp(1.875rem, 3.6vw, 2.375rem);
+  --fs-h2: 1.375rem;
+  --fs-h3: 1.0625rem;
+  --fs-dek: 1.1875rem;   /* serif italic subtitle under a title */
+  --fs-body: 1rem;
+  --fs-small: 0.8125rem; /* captions, table cells, notes */
+  --fs-code: 0.8125rem;
+  --fs-label: 0.6875rem; /* mono caps labels */
+  --fs-micro: 0.625rem;  /* running heads, figure-type tags */
+
+  --lh-tight: 1.1;
+  --lh-snug: 1.35;
+  --lh-dek: 1.45;
+  --lh-body: 1.65;
+
+  --tracking-display: -0.025em;
+  --tracking-heading: -0.015em;
+  --tracking-label: 0.18em;  /* mono caps labels: FIG. 1.3, PART 1, KEY */
+  --tracking-plate: 0.28em;  /* very wide: cover plate lines, edition line */
+
+  --weight-display: 700;
+  --weight-heading: 600;
+  --weight-strong: 600;
+
+  /* ---------- Spacing (4px base) ---------- */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4.5rem;
+
+  --measure: 72ch;        /* comfortable text column */
+  --measure-dek: 46ch;    /* deks stay short, two lines at most */
+  --page-max: 60rem;      /* figures may run wider than text */
+
+  /* ---------- Lines and shapes ---------- */
+  --rule-hair: 1px;
+  --rule-accent: 3px;     /* left bar on figures and callouts */
+  --radius-node: 2px;     /* boxes are nearly square: drawn, not "UI" */
+  --radius-chip: 3px;
+  --radius-logo: 6px;
+  --step-size: 1.375rem;  /* circled step numbers */
+
+  /* ---------- Neutrals: warm paper, blue-black ink ---------- */
+  --paper: #FBF9F5;        /* page */
+  --panel: #F6F4EE;        /* figure plate background */
+  --well: #F1EFE7;         /* code blocks, quote wells, grey fill */
+  --grid-line: #EFEDE6;    /* engineering-paper grid on covers */
+  --rule: #D4D1C5;         /* hairlines, table rules, figure frame */
+  --rule-strong: #C5C2B4;  /* heading rule, table header rule */
+  --rule-soft: #E6E4DB;    /* row separators */
+
+  --ink: #1C2633;          /* text: blue-black, never pure black */
+  --ink-2: #4B5664;        /* secondary text */
+  --muted: #727A85;        /* deks, captions after the claim, labels */
+  --faint: #989CA1;        /* citations, sources, page furniture */
+
+  /* ---------- Semantic colours (fixed meaning, book-wide) ----------
+   * Each has: base (strokes, text, label), -line (box border), -tint (box fill).
+   * Pick the colour by what the thing IS, never for decoration.
+   */
+  --blue: #35739A;   --blue-line: #9EB6C4;   --blue-tint: #EEF3F7;    /* conversations, entries, transcript */
+  --aqua: #04828C;   --aqua-line: #90BCBD;   --aqua-tint: #ECF3F4;    /* session, commits, storage */
+  --aqua-strong: #D5E5E7;                                             /* the one emphasised store box */
+  --violet: #6F5F9D; --violet-line: #ABA3C8; --violet-tint: #F1EFF6;  /* submissions, inbox */
+  --green: #007C61;  --green-line: #8EC0B0;  --green-tint: #EAF3EF;   /* documents, synced state */
+  --amber: #9C6C1E;  --amber-line: #CAB392;  --amber-tint: #F7F2E8;   /* tasks, phases, checkpoints */
+  --amber-bar: #AB8347;                                               /* solid timeline bars */
+  --amber-strong: #ECE2D2;
+  --plum: #8D5B87;   --plum-line: #BFA6B7;   --plum-tint: #F6F0F4;    /* model, generation, provider */
+  --forest: #3B6B56; --forest-line: #99ADA1; --forest-tint: #ECEFE1;  /* tools, environment, external effects */
+  --indigo: #4D64A6; --indigo-line: #939DC2; --indigo-tint: #EFF1F8;  /* views, watchers, events, observers */
+  --rose: #A9556D;   --rose-line: #CB9EA8;   --rose-tint: #F8F0F2;    /* crash, abort, fault, error — failure ONLY */
+  --rose-strong: #F0E0E4;
+  --grey: #727A85;   --grey-line: #C5C2B4;   --grey-tint: #F1EFE7;    /* host app, inactive, outside range */
+
+  /* Default accent for a section = its chapter colour. Override per chapter. */
+  --accent: var(--blue);
+  --accent-line: var(--blue-line);
+  --accent-tint: var(--blue-tint);
+
+  /* ---------- Dark surface (part openers, dark mode) ---------- */
+  --night: #102032;        /* full-bleed part opener */
+  --night-2: #1F3147;      /* raised surface on night */
+  --night-rule: #2B3747;
+  --night-ghost: #1F3147;  /* giant chapter numeral */
+  --night-ink: #F1F3F7;
+  --night-muted: #C0CAD8;
+  --night-faint: #7E868F;
+  --night-accent: #6E9BD0; /* "PART 1" label, short accent rule */
+
+  /* ---------- Hatch pattern (waiting / pending / outside range) ---------- */
+  --hatch: repeating-linear-gradient(
+    -45deg,
+    var(--amber-tint) 0 3px,
+    color-mix(in srgb, var(--amber-line) 55%, var(--amber-tint)) 3px 4px
+  );
+}
+
+/* Chapter accents: put data-accent on a section to recolour numbers, figure bars, labels. */
+[data-accent="blue"]   { --accent: var(--blue);   --accent-line: var(--blue-line);   --accent-tint: var(--blue-tint); }
+[data-accent="aqua"]   { --accent: var(--aqua);   --accent-line: var(--aqua-line);   --accent-tint: var(--aqua-tint); }
+[data-accent="violet"] { --accent: var(--violet); --accent-line: var(--violet-line); --accent-tint: var(--violet-tint); }
+[data-accent="green"]  { --accent: var(--green);  --accent-line: var(--green-line);  --accent-tint: var(--green-tint); }
+[data-accent="amber"]  { --accent: var(--amber);  --accent-line: var(--amber-line);  --accent-tint: var(--amber-tint); }
+[data-accent="plum"]   { --accent: var(--plum);   --accent-line: var(--plum-line);   --accent-tint: var(--plum-tint); }
+[data-accent="forest"] { --accent: var(--forest); --accent-line: var(--forest-line); --accent-tint: var(--forest-tint); }
+[data-accent="indigo"] { --accent: var(--indigo); --accent-line: var(--indigo-line); --accent-tint: var(--indigo-tint); }
+[data-accent="rose"]   { --accent: var(--rose);   --accent-line: var(--rose-line);   --accent-tint: var(--rose-tint); }
+
+/* ---------- Dark mode: night surface, same semantic hues lifted for contrast ---------- */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #102032; --night: #0A1522; --panel: #15273B; --well: #1A2C41; --grid-line: #172A3F;
+    --rule: #2B3747; --rule-strong: #3A4757; --rule-soft: #22303F;
+    --ink: #F1F3F7; --ink-2: #D3D9E2; --muted: #A6B0BE; --faint: #7E868F;
+    --blue: #7FB0D3;   --blue-line: #3D5F78;   --blue-tint: #172D42;
+    --aqua: #5EC1C8;   --aqua-line: #2F6A70;   --aqua-tint: #12303A; --aqua-strong: #18414A;
+    --violet: #A99BD6; --violet-line: #4C4775; --violet-tint: #1D2541;
+    --green: #5CC4A6;  --green-line: #2B6555;  --green-tint: #13302E;
+    --amber: #D6A65A;  --amber-line: #6B5530;  --amber-tint: #2A2B2C; --amber-bar: #B58A4C; --amber-strong: #3A3226;
+    --plum: #C99AC2;   --plum-line: #5E4560;   --plum-tint: #251F36;
+    --forest: #8DBFA4; --forest-line: #3E5E4F;  --forest-tint: #182D2E;
+    --indigo: #93A6E0; --indigo-line: #44508A; --indigo-tint: #19254A;
+    --rose: #E0899F;   --rose-line: #7A3F52;   --rose-tint: #2E1F2C; --rose-strong: #3D2433;
+    --grey: #A6B0BE;   --grey-line: #3A4757;   --grey-tint: #1A2C41;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #102032; --night: #0A1522; --panel: #15273B; --well: #1A2C41; --grid-line: #172A3F;
+  --rule: #2B3747; --rule-strong: #3A4757; --rule-soft: #22303F;
+  --ink: #F1F3F7; --ink-2: #D3D9E2; --muted: #A6B0BE; --faint: #7E868F;
+  --blue: #7FB0D3;   --blue-line: #3D5F78;   --blue-tint: #172D42;
+  --aqua: #5EC1C8;   --aqua-line: #2F6A70;   --aqua-tint: #12303A; --aqua-strong: #18414A;
+  --violet: #A99BD6; --violet-line: #4C4775; --violet-tint: #1D2541;
+  --green: #5CC4A6;  --green-line: #2B6555;  --green-tint: #13302E;
+  --amber: #D6A65A;  --amber-line: #6B5530;  --amber-tint: #2A2B2C; --amber-bar: #B58A4C; --amber-strong: #3A3226;
+  --plum: #C99AC2;   --plum-line: #5E4560;   --plum-tint: #251F36;
+  --forest: #8DBFA4; --forest-line: #3E5E4F;  --forest-tint: #182D2E;
+  --indigo: #93A6E0; --indigo-line: #44508A; --indigo-tint: #19254A;
+  --rose: #E0899F;   --rose-line: #7A3F52;   --rose-tint: #2E1F2C; --rose-strong: #3D2433;
+  --grey: #A6B0BE;   --grey-line: #3A4757;   --grey-tint: #1A2C41;
+}
