@@ -1,0 +1,8 @@
+{
+  "enabled": false,
+  "summarizerModel": "openai-codex/gpt-6.1-terra",
+  "summarizerThinking": "low",
+  "pruneOn": "agent-message",
+  "batchingMode": "agent-message",
+  "summarizerMaxCharsPerResult": 8000
+}

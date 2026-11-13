@@ -1,0 +1,17 @@
+{
+  "version": 2,
+  "entries": {
+    "openai-codex/gpt-6-astra": {
+      "active": false,
+      "serviceTier": "priority"
+    },
+    "openai-codex/gpt-6-luna": {
+      "active": true,
+      "serviceTier": "priority"
+    },
+    "openai-codex/gpt-6.1-sol": {
+      "active": true,
+      "serviceTier": "priority"
+    }
+  }
+}

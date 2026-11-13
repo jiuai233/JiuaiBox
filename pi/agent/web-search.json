@@ -2,9 +2,10 @@
   "allowBrowserCookies": true,
   "provider": "all",
   "workflow": "auto-summary",
-  "summaryModel": "opencode-go/deepseek-v4.1-flash:low",
-  "openaiSearchModel": "gpt-6.1-sol",
+  "summaryModel": "openai-codex/gpt-6.1-terra:low",
   "ssrf": {
-    "allowRanges": ["198.18.0.0/15"]
+    "allowRanges": [
+      "198.18.0.0/15"
+    ]
   }
 }

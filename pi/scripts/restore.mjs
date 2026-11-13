@@ -12,6 +12,9 @@ const files = [
   'extensions/pi-permission-system/config.json',
   'extensions/subagent/config.json', 'extensions/pi-model-fast.json',
   'extensions/powerline-footer/theme.json', 'extensions/pi-read-symbol',
+  'extensions/pi-midrun-compact/config.json', 'extensions/pi-provider-service-tier.json',
+  'i-have-adhd.json', 'desktop/custom.css',
+  'context-prune/settings.json', 'context-prune/policy-lab.json',
   ...readdirSync(join(source, 'skills')).map(name => `skills/${name}`),
 ];
 
