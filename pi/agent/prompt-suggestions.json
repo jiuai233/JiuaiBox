@@ -1,0 +1,6 @@
+{
+  "enabled": true,
+  "provider": "openai-codex",
+  "modelId": "gpt-6.1-sol",
+  "thinkingLevel": "low"
+}

@@ -31,7 +31,7 @@ test('新电脑恢复配置、主题、固定插件与普通技能目录', t => 
   assert.equal(config.theme, 'prism');
   const overrides = JSON.parse(readFileSync(join(agent, 'models.json'))).providers['openai-codex'].modelOverrides;
   for (const id of ['gpt-6.1-sol', 'gpt-6-luna', 'gpt-6-astra']) assert.equal(overrides[id].contextWindow, 500000);
-  assert.equal(config.packages.length, 14);
+  assert.equal(config.packages.length, 16);
   assert(config.packages.every(p => /@(?:\d+\.\d+\.\d+|[a-f0-9]{40})$/.test(p.source ?? p)));
   assert.equal(readFileSync(join(agent, 'system.md'), 'utf8'), readFileSync(join(root, 'agent/system.md'), 'utf8'));
   assert.equal(readdirSync(join(agent, 'skills')).length, 9);
@@ -103,4 +103,15 @@ test('发布目录的 JSON、技能引用和公开检查通过', () => {
     const refs = [...content.matchAll(/`((?:references|scripts)\/[\w./-]+)`/g)].map(x => x[1]);
     for (const ref of refs) assert(existsSync(join(skills, name, ref)), `${name}/${ref}`);
   }
+});
+
+test('install.sh 包列表解析兼容对象格式与字符串格式', () => {
+  const pkgExpr = 'for (const pkg of JSON.parse(require("fs").readFileSync(process.argv[1])).packages) console.log(typeof pkg === "string" ? pkg : pkg.source)';
+  const sh = readFileSync(join(root, 'install.sh'), 'utf8');
+  assert(sh.includes(pkgExpr));
+  const out = spawnSync('node', ['-e', pkgExpr, join(root, 'agent/settings.json')], { encoding: 'utf8' });
+  assert.equal(out.status, 0, out.stderr);
+  const lines = out.stdout.trim().split(/\r?\n/);
+  assert.equal(lines.length, 16);
+  assert(lines.every(line => /^(?:npm|git):/.test(line)));
 });
