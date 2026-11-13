@@ -1,0 +1,103 @@
+{
+  "format": "openai-subscription-image-bundle/1",
+  "name": "openai-subscription-image",
+  "built_at": "2026-10-29T02:05:44.012039+00:00",
+  "source_revision": "d2b3b1fa3320934084053c2776e74ca0ecbf34d6",
+  "source_changes": [],
+  "files": [
+    {
+      "path": "README.md",
+      "source_path": "packaging/openai-subscription-image/README.md",
+      "bytes": 4597,
+      "sha256": "802c864524bf84accc9f5c5f4c688d1983789b393c03f8cdb4b18b73a71103e1"
+    },
+    {
+      "path": "SKILL.md",
+      "source_path": "packaging/openai-subscription-image/SKILL.md",
+      "bytes": 4029,
+      "sha256": "70907b6a13d055bb26610594858d55daf2a68e97a954521db955196236ae40dc"
+    },
+    {
+      "path": "examples/complex-scene.json",
+      "source_path": "packaging/openai-subscription-image/examples/complex-scene.json",
+      "bytes": 2916,
+      "sha256": "d91942b5e7f6a60b168c26fdf0d21767fc5deaca344d918cd8cfcbfcda2072eb"
+    },
+    {
+      "path": "examples/edit.json",
+      "source_path": "packaging/openai-subscription-image/examples/edit.json",
+      "bytes": 343,
+      "sha256": "2442cfb6e0d47745927b855b84dc3aea3efe342bb7932996cda3edc4fbaf8f5a"
+    },
+    {
+      "path": "examples/generate.json",
+      "source_path": "packaging/openai-subscription-image/examples/generate.json",
+      "bytes": 184,
+      "sha256": "c6d50b61f2b4bfcd59f9be14ba6005f5a9bde5ff9a3d297bf3685c6b4d43f449"
+    },
+    {
+      "path": "requirements.txt",
+      "source_path": "packaging/openai-subscription-image/requirements.txt",
+      "bytes": 45,
+      "sha256": "a1ae08157bb6ae20406e48ce5b943f7b7955aa6340e4a92ae5f889e9c7a70bbb"
+    },
+    {
+      "path": "schemas/character-assets.schema.json",
+      "source_path": "schemas/character-assets.schema.json",
+      "bytes": 6675,
+      "sha256": "385befd2d98f6a80a51414e1b04f28c23f17f7b96ab0d68c6bc85c4c4ac24eb4"
+    },
+    {
+      "path": "scripts/image.py",
+      "source_path": "packaging/openai-subscription-image/scripts/image.py",
+      "bytes": 331,
+      "sha256": "ff8dc0256cc60f804e174cfe06bad928d14f653ebf04f7af47dd46947dbe6668"
+    },
+    {
+      "path": "scripts/self_check.py",
+      "source_path": "packaging/openai-subscription-image/scripts/self_check.py",
+      "bytes": 6141,
+      "sha256": "3d3379334111cc9883f42b9834e2283d4a8b97bb34bf1c49e03e13b15e13cbc5"
+    },
+    {
+      "path": "src/video_studio/__init__.py",
+      "source_path": "src/video_studio/__init__.py",
+      "bytes": 68,
+      "sha256": "7c52542c8e8852cc5d1f71ece2fb99d3a27205e870de5dae4f0ca83d9472eb39"
+    },
+    {
+      "path": "src/video_studio/image_candidate.py",
+      "source_path": "src/video_studio/image_candidate.py",
+      "bytes": 35902,
+      "sha256": "aeb2bb3b89ae503d16b0937f5b31fabf61056add335f278bff6c07942fb4bf69"
+    },
+    {
+      "path": "src/video_studio/image_receipts.py",
+      "source_path": "src/video_studio/image_receipts.py",
+      "bytes": 5770,
+      "sha256": "bf7599eb8e751c564cdb134d5ec17b1b47886e2037a81406f6f0b64ef74a8a20"
+    },
+    {
+      "path": "src/video_studio/qwen_options.py",
+      "source_path": "src/video_studio/qwen_options.py",
+      "bytes": 2014,
+      "sha256": "0a71030c9d21b8f2f5be973ba159bb3f1205aa373fff28528e4febfd2f17e264"
+    },
+    {
+      "path": "pyproject.toml",
+      "bytes": 202,
+      "sha256": "b5121a075c016de75ee35722fd660eeefdf1bd4184d878256a351c3a50854bbd"
+    },
+    {
+      "path": "uv.lock",
+      "bytes": 104034,
+      "sha256": "d0b9eb70f0212c50303244c140c745e733ccf6ba8a025228b099606f1cd0b4c4"
+    }
+  ],
+  "credentials_included": false,
+  "runtime_dependencies": [
+    "requests",
+    "Pillow",
+    "jsonschema"
+  ]
+}

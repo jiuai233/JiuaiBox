@@ -1,0 +1,8 @@
+{
+  "mode": "budget-summary",
+  "triggerTokens": 15000,
+  "keepRecentToolTurns": 2,
+  "summarizerModel": "openai-codex/gpt-6.1-terra",
+  "summarizerThinking": "low",
+  "summarizerMaxCharsPerResult": 8000
+}

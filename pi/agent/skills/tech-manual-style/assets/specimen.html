@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tech Manual Specimen</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Manrope:wght@600;700&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&family=Source+Serif+4:ital,opsz,wght@1,8..60,400;1,8..60,500&display=swap">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="components.css">
+<style>
+  body { margin: 0; background: var(--paper); }
+  .fx text { font-family: var(--font-body); fill: var(--ink); }
+  .fx .mono { font-family: var(--font-mono); }
+  .fx .caps { font-family: var(--font-mono); text-transform: uppercase; letter-spacing: .18em; }
+  .fx .voice { font-family: var(--font-voice); font-style: italic; }
+  .fx .muted { fill: var(--muted); }
+  .fx .life { stroke: var(--muted); stroke-width: 1; stroke-dasharray: 1 3; }
+  .fx .a { fill: none; stroke-width: 1.25; }
+  .fx .a.main { stroke-width: 1.75; }
+  .fx .call   { stroke: var(--ink);    marker-end: url(#ah-ink); }
+  .fx .commit { stroke: var(--aqua);   marker-end: url(#ah-aqua); }
+  .fx .state  { stroke: var(--amber);  marker-end: url(#ah-amber);  stroke-dasharray: 4 3; }
+  .fx .model  { stroke: var(--plum);   marker-end: url(#ah-plum); }
+  .fx .effect { stroke: var(--forest); marker-end: url(#ah-forest); stroke-dasharray: 4 3; }
+  .fx .event  { stroke: var(--indigo); marker-end: url(#ah-indigo); stroke-dasharray: 1.5 3; }
+  .fx .fail   { stroke: var(--rose);   marker-end: url(#ah-rose);   stroke-dasharray: 4 3; }
+  .fx .reply  { stroke: var(--aqua);   marker-end: url(#ah-aqua);   stroke-dasharray: 4 3; }
+  .specimen-row { display: grid; gap: var(--space-6); grid-template-columns: 1fr; }
+  @media (min-width: 52rem) { .specimen-row { grid-template-columns: 1.4fr 1fr; } }
+</style>
+</head>
+<body class="tm">
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <marker id="ah-ink" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0.8 L7.5,4 L0,7.2 z" fill="var(--ink)"/></marker>
+    <marker id="ah-aqua" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0.8 L7.5,4 L0,7.2 z" fill="var(--aqua)"/></marker>
+    <marker id="ah-amber" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0.8 L7.5,4 L0,7.2 z" fill="var(--amber)"/></marker>
+    <marker id="ah-plum" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0.8 L7.5,4 L0,7.2 z" fill="var(--plum)"/></marker>
+    <marker id="ah-forest" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0.8 L7.5,4 L0,7.2 z" fill="var(--forest)"/></marker>
+    <marker id="ah-indigo" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0.8 L7.5,4 L0,7.2 z" fill="var(--indigo)"/></marker>
+    <marker id="ah-rose" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0.8 L7.5,4 L0,7.2 z" fill="var(--rose)"/></marker>
+    <pattern id="hatch" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="5" height="5" fill="var(--amber-tint)"/>
+      <line x1="0" y1="0" x2="0" y2="5" stroke="var(--amber-line)" stroke-width="1.2"/>
+    </pattern>
+  </defs>
+</svg>
+
+<!-- ============ COVER ============ -->
+<header class="tm-cover">
+  <div class="tm-masthead">
+    <span class="tm-logo"><span class="tm-logo-mark" aria-hidden="true">
+      <svg width="18" height="18" viewBox="0 0 18 18"><path d="M3 4h12M3 9h12M3 14h7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="14" cy="14" r="1.6" fill="currentColor"/></svg>
+    </span>Ledger</span>
+    <div class="tm-edition">
+      <div class="tm-plate">Technical manual</div>
+      <div class="tm-plate">Ledger 2.4.0 · Engineering edition · 2026.10</div>
+    </div>
+  </div>
+  <div class="tm-plate-bar">
+    <span class="tm-plate">Plate I · A write, and what survives it</span>
+    <span class="tm-plate" style="color:var(--muted)">One log · many readers</span>
+  </div>
+
+  <div class="specimen-row">
+    <div>
+      <p class="tm-label" style="margin-bottom:var(--space-3)">Semantic colours</p>
+      <ul class="tm-dots tm-label">
+        <li style="--dot:var(--blue)">Records</li>
+        <li style="--dot:var(--aqua)">Storage</li>
+        <li style="--dot:var(--violet)">Queue</li>
+        <li style="--dot:var(--green)">Documents</li>
+        <li style="--dot:var(--amber)">Jobs</li>
+        <li style="--dot:var(--plum)">Model</li>
+        <li style="--dot:var(--forest)">Effects</li>
+        <li style="--dot:var(--indigo)">Observers</li>
+        <li style="--dot:var(--rose)">Failure</li>
+        <li style="--dot:var(--grey)">Host</li>
+      </ul>
+    </div>
+    <div>
+      <p class="tm-label" style="margin-bottom:var(--space-3)">Key</p>
+      <ol class="tm-key">
+        <li><span class="tm-step">1</span><span class="tm-key-term">Commit seq</span><span class="tm-key-def">one atomic write per tick</span></li>
+        <li><span class="tm-step">2</span><span class="tm-key-term">Entry</span><span class="tm-key-def">an immutable record</span></li>
+        <li><span class="tm-step">3</span><span class="tm-key-term">Job</span><span class="tm-key-def">white pending, solid running</span></li>
+      </ol>
+    </div>
+  </div>
+
+  <h1 class="tm-cover-title">Ledger</h1>
+  <p class="tm-cover-sub">Technical Manual</p>
+  <p style="max-width:var(--measure);color:var(--ink-2)">The durable write log from the first idea down to the stored rows: atomic commits, jobs that checkpoint every phase, replay after a crash, and the storage underneath.</p>
+</header>
+
+<!-- ============ PART OPENER ============ -->
+<section class="tm-part" data-accent="amber">
+  <span class="tm-label">Part 5</span>
+  <h1>Jobs</h1>
+  <p class="tm-dek">Durable state machines that checkpoint every phase, own their children, and abort from the bottom up.</p>
+  <div class="tm-part-rule"></div>
+  <ol class="tm-part-toc">
+    <li><span class="n">5.1</span><span>Jobs as state machines</span><span class="p">63</span></li>
+    <li><span class="n">5.2</span><span>Phases, steps and progress</span><span class="p">67</span></li>
+    <li><span class="n">5.3</span><span>The effect sandwich</span><span class="p">70</span></li>
+  </ol>
+  <span class="tm-ghost" aria-hidden="true">05</span>
+</section>
+
+<!-- ============ SECTION ============ -->
+<main class="tm-page" data-accent="amber">
+  <div class="tm-runhead"><span>The effect sandwich</span><span>Ledger</span></div>
+
+  <header class="tm-section-head">
+    <span class="tm-num">5.3</span>
+    <h1>The effect sandwich</h1>
+    <p class="tm-dek">Commit what you are about to do, do it, then commit what happened; a crash in the middle leaves a clear question, not a silent gap.</p>
+  </header>
+
+  <p>The log can commit its own records atomically, but it cannot make a card charge atomic with them. If the process dies right after the charge, did the customer pay? After this section you can split any outside action into phases so every crash point has a defined, safe recovery.</p>
+
+  <h2>Why effects need their own phase</h2>
+  <p>An <em>effect</em> is anything that changes the world outside storage. Effects may not run inside a commit <span class="tm-cite">spec §1, invariant 4</span>. A commit holds the write queue, so waiting on the network would stall every other writer (<a class="tm-xref" href="#">the commit <span class="tm-page-ref">(p. 29)</span></a>).</p>
+
+  <div class="tm-callout">
+    <span class="tm-label">Core rule</span>
+    <p>“A session atomically commits immutable entries and full job records. Only committed state is observable.”</p>
+  </div>
+
+  <div class="tm-code-head"><span><b>a two-phase payment job</b> test/examples/12-jobs.ts</span><span>TS</span></div>
+<pre class="tm-code"><span class="tm-prompt">$</span> node test/examples/12-jobs.ts
+<span class="tm-out">answer: [ { type: 'text', text: 'charged' } ]</span>
+<span class="tm-out">log: [ 'job.prepare', 'job.charge', 'job.terminal' ]</span></pre>
+
+  <figure class="tm-fig">
+    <div class="tm-fig-head"><span class="tm-fig-id">Fig. 5.3</span><span class="tm-fig-title">Intent, effect, outcome</span><span class="tm-fig-type">Sequence</span></div>
+    <svg class="fx" viewBox="0 0 640 300" role="img" aria-labelledby="f53t">
+      <title id="f53t">Phase handler commits intent, calls payments, commits outcome</title>
+      <g font-size="11">
+        <rect x="40"  y="8" width="130" height="34" rx="2" fill="var(--amber-tint)" stroke="var(--amber-line)"/>
+        <text x="105" y="25" text-anchor="middle" class="caps" font-weight="700">Phase handler</text>
+        <text x="105" y="37" text-anchor="middle" class="muted" font-size="10">your code</text>
+        <rect x="255" y="8" width="130" height="34" rx="2" fill="var(--aqua-tint)" stroke="var(--aqua-line)"/>
+        <text x="320" y="25" text-anchor="middle" class="caps" font-weight="700">Session</text>
+        <text x="320" y="37" text-anchor="middle" class="muted" font-size="10">storage</text>
+        <rect x="470" y="8" width="130" height="34" rx="2" fill="var(--forest-tint)" stroke="var(--forest-line)"/>
+        <text x="535" y="25" text-anchor="middle" class="caps" font-weight="700">Payments</text>
+        <text x="535" y="37" text-anchor="middle" class="muted" font-size="10">external system</text>
+      </g>
+      <line class="life" x1="105" y1="42" x2="105" y2="292"/><line class="life" x1="320" y1="42" x2="320" y2="292"/><line class="life" x1="535" y1="42" x2="535" y2="292"/>
+      <circle cx="16" cy="72" r="10" fill="var(--paper)" stroke="var(--ink-2)"/><text x="16" y="76" text-anchor="middle" class="voice" font-size="11">1</text>
+      <text x="212" y="64" text-anchor="middle" class="mono" font-size="12" font-weight="700" style="fill:var(--aqua)">{ phase: "charge", key }</text>
+      <line class="a commit main" x1="106" y1="72" x2="318" y2="72"/>
+      <text x="212" y="88" text-anchor="middle" class="muted" font-size="11">commit the intent</text>
+      <rect x="80" y="100" width="480" height="24" rx="2" fill="var(--rose-tint)" stroke="var(--rose-line)"/>
+      <text x="320" y="116" text-anchor="middle" class="voice" font-size="12">crash here: rerun prepare; nothing was sent</text>
+      <circle cx="16" cy="152" r="10" fill="var(--paper)" stroke="var(--ink-2)"/><text x="16" y="156" text-anchor="middle" class="voice" font-size="11">2</text>
+      <text x="320" y="144" text-anchor="middle" class="mono" font-size="12" style="fill:var(--forest)">charge(key)</text>
+      <line class="a effect" x1="106" y1="152" x2="533" y2="152"/>
+      <text x="320" y="168" text-anchor="middle" class="muted" font-size="11">the effect, outside any commit</text>
+      <circle cx="16" cy="212" r="10" fill="var(--paper)" stroke="var(--ink-2)"/><text x="16" y="216" text-anchor="middle" class="voice" font-size="11">3</text>
+      <text x="212" y="204" text-anchor="middle" class="mono" font-size="12" style="fill:var(--aqua)">terminal + receipt</text>
+      <line class="a commit" x1="106" y1="212" x2="318" y2="212"/>
+      <text x="212" y="228" text-anchor="middle" class="muted" font-size="11">outcome and entry in one commit</text>
+      <rect x="80" y="250" width="480" height="24" rx="2" fill="var(--grey-tint)" stroke="var(--rule)"/>
+      <text x="320" y="266" text-anchor="middle" class="voice muted" font-size="12">crash after 3: the record is the receipt; nothing runs again</text>
+    </svg>
+  </figure>
+  <p class="tm-figcaption"><strong>Commit the intent, perform the effect, commit the outcome; a crash in the middle reruns only the effect phase.</strong> The phases of spec §5.1's payment example.</p>
+
+  <h2>Arrow styles</h2>
+  <figure class="tm-fig" data-accent="blue">
+    <div class="tm-fig-head"><span class="tm-fig-id">Fig. 0.1</span><span class="tm-fig-title">Reading a sequence figure</span><span class="tm-fig-type">Sequence</span></div>
+    <svg class="fx" viewBox="0 0 640 330" role="img" aria-label="The eight arrow styles">
+      <g font-size="11">
+        <line class="a call"          x1="40" y1="30"  x2="300" y2="30"/><text x="320" y="34"  class="mono" font-size="12">submit()</text><text x="440" y="34"  class="muted">a call · solid ink</text>
+        <line class="a commit"        x1="40" y1="70"  x2="300" y2="70"/><text x="320" y="74"  class="mono" font-size="12" style="fill:var(--aqua)">commit 2</text><text x="440" y="74"  class="muted">a commit lands · solid aqua</text>
+        <line class="a state"         x1="40" y1="110" x2="300" y2="110"/><text x="320" y="114" class="mono" font-size="12" style="fill:var(--amber)">job 9 running</text><text x="440" y="114" class="muted">state-only commit · dashed amber</text>
+        <line class="a model"         x1="40" y1="150" x2="300" y2="150"/><text x="320" y="154" class="mono" font-size="12" style="fill:var(--plum)">streamSimple</text><text x="440" y="154" class="muted">model request · solid plum</text>
+        <line class="a effect"        x1="40" y1="190" x2="300" y2="190"/><text x="320" y="194" class="mono" font-size="12" style="fill:var(--forest)">execute()</text><text x="440" y="194" class="muted">external effect · dashed forest</text>
+        <line class="a event"         x1="300" y1="230" x2="40" y2="230"/><text x="320" y="234" class="mono" font-size="12" style="fill:var(--indigo)">watch frame</text><text x="440" y="234" class="muted">view or event · dotted indigo</text>
+        <line class="a fail"          x1="40" y1="270" x2="300" y2="270"/><text x="320" y="274" class="mono" font-size="12" style="fill:var(--rose)">abort</text><text x="440" y="274" class="muted">crash, lost work · dashed rose</text>
+        <line class="a reply"         x1="300" y1="310" x2="40" y2="310"/><text x="320" y="314" class="mono" font-size="12" style="fill:var(--aqua)">done</text><text x="440" y="314" class="muted">a reply · dashed aqua</text>
+      </g>
+    </svg>
+  </figure>
+  <p class="tm-figcaption"><strong>Every exchange is drawn with the same eight arrow styles.</strong> Arrows into storage are commits; an amber one only changes a job's state.</p>
+
+  <h2>Nodes</h2>
+  <div style="display:flex;flex-wrap:wrap;gap:var(--space-3);margin-bottom:var(--space-5)">
+    <span class="tm-node" data-c="blue"><b>conversation</b><small>records</small></span>
+    <span class="tm-node tm-node--emph" data-c="aqua" style="--c-tint:var(--aqua-strong)"><b>store</b><small>storage settles</small></span>
+    <span class="tm-node" data-c="amber"><b>job</b><small>runtime.commit()</small></span>
+    <span class="tm-node" data-c="plum"><b>model</b><small>generation</small></span>
+    <span class="tm-node tm-node--pending" data-c="grey"><b>reopen</b><small>inferred, not logged</small></span>
+    <span class="tm-node tm-node--hatched" data-c="amber"><b>older entries</b><small>still stored</small></span>
+    <span class="tm-chip tm-chip--rose">SIGKILL</span>
+    <span class="tm-chip">run 14</span>
+  </div>
+
+  <h2>Outcomes</h2>
+  <div class="tm-table-wrap">
+  <table class="tm-table">
+    <thead><tr><th>Status</th><th>Fields</th><th>Written by</th><th>Meaning</th></tr></thead>
+    <tbody>
+      <tr><td><code>completed</code></td><td>result</td><td>the job</td><td>success; the typed result</td></tr>
+      <tr><td><code>failed</code></td><td>error, result?</td><td>the job</td><td>expected failure, such as a declined card</td></tr>
+      <tr><td><code>orphaned</code></td><td>reason</td><td>the log</td><td>aborted while no code could take it</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="tm-takeaways">
+    <span class="tm-label tm-label--ink">What this means for you</span>
+    <ul>
+      <li>Create the key in the intent phase. A key created inside the effect phase changes on every rerun.</li>
+      <li>Commit the outcome and its consequences together.</li>
+      <li>Guard a second effect in the same phase with a memo.</li>
+    </ul>
+  </div>
+
+  <div class="tm-warning"><span class="tm-label">Experimental</span>The API changes without notice between releases.</div>
+
+  <p class="tm-sources"><b>Sources:</b> spec §5.2 (verbatim); src/jobs/scheduler.ts; test/jobs-recovery.test.ts; research/capture/crash-mid-tool.txt</p>
+
+  <div class="tm-runfoot"><span>Ledger / Technical manual</span><span class="tm-folio">70</span></div>
+</main>
+</body>
+</html>

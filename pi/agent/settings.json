@@ -1,35 +1,38 @@
 {
-  "lastChangelogVersion": "1.1.0",
+  "lastChangelogVersion": "1.5.2",
   "theme": "prism",
   "defaultProvider": "openai-codex",
   "defaultModel": "gpt-6.1-sol",
   "defaultThinkingLevel": "high",
   "compactionModel": {
-    "model": "opencode-go/deepseek-v4.1-flash"
+    "model": "openai-codex/gpt-6.1-terra",
+    "thinkingLevel": "low"
   },
   "packages": [
-    "npm:pi-web-access@0.37.0",
-    "npm:pi-loop-compact@0.1.0",
+    "git:github.com/jiuai233/pi-astra-context-prune@2f1b6f7296db449c500b9ca554fca30cd8124cc0",
+    "npm:pi-web-access@0.47.0",
     "npm:pi-compaction-model@0.1.0",
-    "npm:@juicesharp/rpiv-todo@2.12.0",
-    "npm:@juicesharp/rpiv-ask-user-question@2.12.0",
+    "npm:@juicesharp/rpiv-todo@2.15.0",
+    "npm:@juicesharp/rpiv-ask-user-question@2.15.0",
     {
-      "source": "npm:pi-subagents@0.76.1",
+      "source": "npm:pi-subagents@0.88.0",
       "skills": [
         "!skills/council-mode/**"
       ]
     },
-    "npm:@gotgenes/pi-permission-system@40.1.1",
-    "npm:pi-powerline-footer@0.19.1",
-    "npm:oh-my-tps@0.3.2",
-    "npm:pi-antigravity@0.9.0",
-    "npm:@narumitw/pi-plan-mode@0.59.2",
-    "npm:@pi-kaush/pi-tool-call-markers@0.3.11",
+    "npm:@gotgenes/pi-permission-system@42.0.0",
+    "npm:pi-powerline-footer@0.22.0",
+    "npm:oh-my-tps@0.3.3",
+    "npm:@narumitw/pi-plan-mode@0.60.0",
+    "npm:@pi-kaush/pi-tool-call-markers@0.3.20",
     {
-      "source": "git:github.com/ayghri/i-have-adhd@723af7d9afaf43eb871dbcce6129e2bf80de90d5",
+      "source": "git:github.com/ayghri/i-have-adhd@1ecea1993b7fce257ffbd686c070948b5e07eda6",
       "skills": []
     },
-    "git:github.com/jiuai233/pi-model-fast@b8f20c300a9ddbb31f68303062408c6fdd142821"
+    "git:github.com/jiuai233/pi-model-fast@cdeb6d042b3b2e5a0399f7b254b918f800ba05ec",
+    "npm:pi-loop-compact@0.1.1",
+    "git:github.com/jiuai233/pi-ws-recovery@c4529b7ef63e0096d4d0aa0eddd1dd6e0d5824b9",
+    "npm:@jiuai233/pi-prompt-suggestions@1.3.1"
   ],
   "subagents": {
     "defaultModel": "openai-codex/gpt-6.1-sol",
@@ -66,14 +69,21 @@
     "defaultThinking": "high"
   },
   "enabledModels": [
-    "antigravity/gemini-3.8-flash",
+    "openai-codex/gpt-6.1-sol",
+    "openai-codex/gpt-6.1-terra",
+    "openai-codex/gpt-6-luna",
     "openai-codex/gpt-6-astra",
     "opencode-go/deepseek-v4.1-flash",
-    "xai/grok-4.7",
-    "openai-codex/gpt-6-luna",
-    "openai-codex/gpt-6.1-sol"
+    "xai/grok-4.7"
   ],
   "hideThinkingBlock": true,
   "tuiMode": "fullscreen",
-  "showCacheMissNotices": true
+  "showCacheMissNotices": true,
+  "cacheWarming": "streaming",
+  "powerline": {
+    "cache_read": {
+      "format": "session-request"
+    }
+  },
+  "defaultProjectTrust": "always"
 }

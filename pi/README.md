@@ -13,19 +13,19 @@ bash pi/install.sh
 pi
 ```
 
-在 Pi 中运行 `/login`，登录 OpenAI Codex、Google Antigravity 等所需提供商。压缩与搜索摘要使用 `opencode-go/deepseek-v4.1-flash`，需为 OpenCode Go 配置授权。默认主模型为 `openai-codex/gpt-6.1-sol`；模型不可用时，通过 `/model` 选择可用模型，并同步 `settings.json` 中的主模型、子代理模型与 `enabledModels`。
+在 Pi 中运行 `/login`，登录 OpenAI Codex 等所需提供商。压缩与搜索摘要使用 `openai-codex/gpt-6.1-terra`。默认主模型为 `openai-codex/gpt-6.1-sol`；模型不可用时，通过 `/model` 选择可用模型，并同步 `settings.json` 中的主模型、子代理模型与 `enabledModels`。
 
 ## 恢复范围
 
 - **交互与提示词**：全局 `system.md`、高思考等级、全屏界面、隐藏思考正文；ADHD 输出模式由插件控制。
 - **配色**：Prism 深色主题，粉色强调、青色链接、紫色代码与彩虹思考状态栏。
 - **插件**：搜索与网页读取、Google 搜索及图片生成、任务清单、结构化提问、子代理、计划模式、权限管理、压缩模型、工具循环中途压缩、状态栏、吞吐显示、工具标记、模型快速模式和按名称读取代码定义的 `read_symbol`。
-- **技能**：工程修改规范、界面设计与审查技能；飞书认证与表格技能从官方源安装。
+- **技能**：前端设计（`frontend-design`）、无障碍（`better-accessibility`）、技术手册风格（`tech-manual-style`）与 OpenAI 订阅生图（`openai-subscription-image`，需 `uv` 与 `codex login`）；飞书认证与表格技能从官方源安装。
 - **细节设置**：OpenAI Codex 的 `gpt-6.1-sol`、`gpt-6-luna`、`gpt-6-astra` 本地上下文窗口设为 500k；85% 上下文压缩水位、独立子代理上下文与搜索策略。
 
 500k 为 Pi 本地窗口覆盖值，服务端支持范围以提供商实际限制为准。
 
-Pi 固定为 `1.1.0`；14 个插件固定至当前 npm 版本或 Git 提交，另内置 `pi-read-symbol@0.1.0` 源码。`versions.json` 与 `agent/settings.json` 是安装版本清单；内置插件版本见 `agent/extensions/pi-read-symbol/package.json`。npm 的传递依赖仍由包管理器解析，此配置不提供完整依赖树锁定。
+Pi 固定为 `1.5.2`；16 个插件固定至当前 npm 版本或 Git 提交，另内置 `pi-read-symbol@0.1.0` 源码。`versions.json` 与 `agent/settings.json` 是安装版本清单；内置插件版本见 `agent/extensions/pi-read-symbol/package.json`。npm 的传递依赖仍由包管理器解析，此配置不提供完整依赖树锁定。
 
 ## 认证与权限
 
@@ -58,7 +58,7 @@ bash pi/install.sh --config-only
 安装脚本使用 `~/.pi/agent/`，不读取自定义 `PI_CODING_AGENT_DIR`。若已有 Pi 与固定版本不同，脚本在写配置前停止；退出所有 Pi 会话后可安装基线版本：
 
 ```bash
-npm install -g --ignore-scripts @earendil-works/pi-coding-agent@1.1.0
+npm install -g --ignore-scripts @earendil-works/pi-coding-agent@1.5.2
 ```
 
 修改主题后通过 `/settings` → `Theme` 选择，或执行 `/reload`。第三方技能来源与许可证见 [THIRD_PARTY.md](THIRD_PARTY.md)。

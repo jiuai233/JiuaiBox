@@ -24,7 +24,7 @@ node "$ROOT/scripts/restore.mjs"
 if [[ "$MODE" == "--config-only" ]]; then exit 0; fi
 while IFS= read -r source; do
   pi install "$source"
-done < <(node -e 'for (const source of JSON.parse(require("fs").readFileSync(process.argv[1])).packages) console.log(source)' "$ROOT/agent/settings.json")
+done < <(node -e 'for (const pkg of JSON.parse(require("fs").readFileSync(process.argv[1])).packages) console.log(typeof pkg === "string" ? pkg : pkg.source)' "$ROOT/agent/settings.json")
 pi update --models
 SKILLS_VERSION="$(node -p "JSON.parse(require('fs').readFileSync(process.argv[1])).skillsCli" "$ROOT/versions.json")"
 npx --yes "skills@$SKILLS_VERSION" add https://open.feishu.cn \

@@ -1,0 +1,175 @@
+/* Pi Agent custom stylesheet.
+ * Loaded last, so these rules win the cascade.
+ * Reload the window (Ctrl+R / Cmd+R) to apply edits.
+ *
+ * Font variables used by the app:
+ *   --font-ui       chat and interface text
+ *   --font-display  headings
+ *   --font-mono     code blocks and tool output
+ *
+ * Example:
+ * :root {
+ *   --font-ui: "Inter", "Segoe UI", -apple-system, sans-serif;
+ *   --font-mono: "Cascadia Code", "JetBrains Mono", monospace;
+ * }
+ * .markdown-body { font-size: 15px; }
+ */
+
+/* ===== Prism for Desktop ===============================================
+ * 与终端 prism 主题同一套色相，粉色为主色：
+ *   pink   主色：按钮、焦点、选中、用户气泡、标题、加粗、列表符号、滚动条
+ *   cyan   导航 / 结构：链接、代码语言标签、工具区底色
+ *   violet 代码 / 引用：行内代码、引用线、h3
+ *   green / red / yellow  只用于状态
+ * 底色是偏粉的梅子灰，边框和 hover 也带粉调。
+ * ===================================================================== */
+
+/* ---------- Light ---------- */
+:root {
+  --p-pink: #c42a7d;
+  --p-cyan: #0b7671;
+  --p-violet: #6a4bc4;
+
+  --bg: #faf5f9;
+  --bg-panel: rgba(246, 237, 244, 0.92);
+  --bg-hover: rgba(196, 42, 125, 0.06);
+  --bg-selected: rgba(196, 42, 125, 0.13);
+  --bg-subtle: rgba(196, 42, 125, 0.05);
+  --border: rgba(140, 50, 110, 0.17);
+  --separator: rgba(140, 50, 110, 0.11);
+  --surface: #ffffff;
+  --workbench-bg: #ffffff;
+  --surface-muted: rgba(255, 255, 255, 0.66);
+  --surface-elevated: #ffffff;
+
+  --text: #241b26;
+  --text-muted: #5f5468;
+  --text-dim: #716579;
+  --text-meta: #716579;
+
+  --accent: var(--p-pink);
+  --accent-hover: #a82169;
+  --accent-contrast: #ffffff;
+  --accent-soft: rgba(196, 42, 125, 0.12);
+  --accent-border: rgba(196, 42, 125, 0.45);
+
+  --danger: #c0293d;
+  --success: #23804a;
+  --warning: #8f6200;
+
+  --user-bg: rgba(196, 42, 125, 0.09);
+  --tool-bg: rgba(11, 118, 113, 0.06);
+  --scroll-thumb: rgba(196, 42, 125, 0.3);
+
+  --focus-ring: rgba(196, 42, 125, 0.36);
+  --selection: rgba(196, 42, 125, 0.2);
+}
+
+/* ---------- Dark ---------- */
+html.dark {
+  --p-pink: #f78bc5;
+  --p-cyan: #64d6d0;
+  --p-violet: #c5acfa;
+
+  --bg: #211c26;
+  --bg-panel: rgba(37, 30, 43, 0.94);
+  --bg-hover: rgba(247, 139, 197, 0.08);
+  --bg-selected: rgba(247, 139, 197, 0.18);
+  --bg-subtle: rgba(247, 139, 197, 0.06);
+  --border: rgba(247, 139, 197, 0.16);
+  --separator: rgba(247, 139, 197, 0.1);
+  --surface: #2a2331;
+  --workbench-bg: #211c26;
+  --surface-muted: rgba(46, 38, 54, 0.72);
+  --surface-elevated: #31293a;
+
+  --text: #efe8f2;
+  --text-muted: #bcb1c4;
+  --text-dim: #9c90a6;
+  --text-meta: #9c90a6;
+
+  --accent: var(--p-pink);
+  --accent-hover: #fbaad6;
+  --accent-contrast: #211c26;
+  --accent-soft: rgba(247, 139, 197, 0.18);
+  --accent-border: rgba(247, 139, 197, 0.5);
+
+  --danger: #f29aa7;
+  --success: #9ad9ac;
+  --warning: #f2d38c;
+
+  --user-bg: #3a2a3f;
+  --tool-bg: rgba(100, 214, 208, 0.055);
+  --scroll-thumb: rgba(247, 139, 197, 0.32);
+
+  --focus-ring: rgba(247, 139, 197, 0.45);
+  --selection: rgba(247, 139, 197, 0.3);
+}
+
+::selection { background: var(--selection); }
+
+/* ---------- Markdown ---------- */
+.markdown-body h1,
+.markdown-body h2 { color: var(--p-pink); }
+.markdown-body h3 { color: color-mix(in srgb, var(--p-violet) 75%, var(--text)); }
+
+.markdown-body strong { color: color-mix(in srgb, var(--p-pink) 55%, var(--text)); }
+.markdown-body li::marker { color: var(--p-pink); }
+
+.markdown-body a {
+  color: var(--p-cyan);
+  text-decoration-color: color-mix(in srgb, var(--p-cyan) 45%, transparent);
+}
+.markdown-body a:hover { text-decoration-color: var(--p-cyan); }
+
+.markdown-body .markdown-inline-code {
+  color: var(--p-violet);
+  background: color-mix(in srgb, var(--p-violet) 11%, transparent);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--p-violet) 24%, transparent);
+}
+
+.markdown-body blockquote {
+  border-left-color: color-mix(in srgb, var(--p-violet) 60%, transparent);
+}
+
+.markdown-body th { background: color-mix(in srgb, var(--p-pink) 8%, var(--bg-panel)); }
+
+.markdown-body hr {
+  background: linear-gradient(90deg,
+    transparent,
+    color-mix(in srgb, var(--p-pink) 70%, transparent),
+    color-mix(in srgb, var(--p-violet) 55%, transparent),
+    color-mix(in srgb, var(--p-cyan) 50%, transparent),
+    transparent);
+}
+
+/* ---------- Code blocks ---------- */
+.markdown-code-block { border-color: color-mix(in srgb, var(--p-pink) 18%, var(--border)); }
+.markdown-code-header { background: color-mix(in srgb, var(--p-pink) 6%, var(--bg-panel)); }
+.markdown-code-lang { color: var(--p-cyan); }
+
+/* ---------- Chat ---------- */
+.message-user-bubble {
+  box-shadow: inset 0 0 0 var(--hairline) color-mix(in srgb, var(--p-pink) 22%, transparent);
+}
+
+.chat-composer:focus-within {
+  border-color: var(--accent-border) !important;
+  box-shadow: var(--shadow-composer), 0 0 0 3px var(--accent-soft) !important;
+}
+
+.session-item.is-selected {
+  box-shadow: inset 3px 0 0 var(--accent) !important;
+}
+
+/* ---------- Extension widgets ---------- */
+/* 输入框上方的扩展标签行浮在消息列表之上且没有背景，这里铺实底并在顶部渐隐 */
+.mb-2.w-full:has(.extension-widget-triggers) {
+  margin-bottom: 0;
+  padding-bottom: 8px;
+  background: var(--workbench-bg);
+  box-shadow: 0 -14px 14px -4px var(--workbench-bg);
+}
+.extension-widget-panels {
+  background: color-mix(in srgb, var(--p-pink) 4%, var(--workbench-bg)) !important;
+}
