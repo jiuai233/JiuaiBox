@@ -4,14 +4,15 @@
   "permissionReviewLog": true,
   "yoloMode": false,
   "doublePressToConfirm": false,
+  "authorizerChain": [],
   "permission": {
     "*": "allow",
     "path": {
       "*": "allow",
-      "*.env": "deny",
-      "*.env.*": "deny",
+      "*.env": "ask",
+      "*.env.*": "ask",
       "*.env.example": "allow",
-      "~/.ssh/*": "deny",
+      "~/.ssh/*": "ask",
       "~/.pi/agent/auth.json": "deny"
     },
     "bash": {
