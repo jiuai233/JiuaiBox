@@ -7,14 +7,15 @@ const source = resolve(dirname(fileURLToPath(import.meta.url)), '../agent');
 const target = join(homedir(), '.pi/agent');
 const backup = join(target, 'backups', `jiuaibox-${Date.now()}`);
 const files = [
-  'settings.json', 'system.md', 'models.json',
+  'settings.json', 'system.md', 'AGENTS.md', 'models.json',
+  'agents/sol.md', 'agents/settings.json',
   'web-search.json', 'themes/prism.json',
   'extensions/pi-permission-system/config.json',
   'extensions/subagent/config.json', 'extensions/pi-model-fast.json',
-  'extensions/powerline-footer/theme.json', 'extensions/pi-read-symbol',
+  'extensions/powerline-footer/theme.json', 'extensions/file-links.ts',
+  'extensions/pi-guardrails',
   'extensions/pi-midrun-compact/config.json', 'extensions/pi-provider-service-tier.json',
   'i-have-adhd.json', 'prompt-suggestions.json', 'desktop/custom.css',
-  'context-prune/settings.json', 'context-prune/policy-lab.json',
   ...readdirSync(join(source, 'skills')).map(name => `skills/${name}`),
 ];
 

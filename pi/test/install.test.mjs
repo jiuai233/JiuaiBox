@@ -29,31 +29,44 @@ test('新电脑恢复配置、主题、固定插件与普通技能目录', t => 
   const agent = restore(fixture(t));
   const config = JSON.parse(readFileSync(join(agent, 'settings.json')));
   assert.equal(config.theme, 'prism');
-  const overrides = JSON.parse(readFileSync(join(agent, 'models.json'))).providers['openai-codex'].modelOverrides;
-  for (const id of ['gpt-6.1-sol', 'gpt-6-luna', 'gpt-6-astra']) assert.equal(overrides[id].contextWindow, 500000);
-  assert.equal(config.packages.length, 16);
+  assert.equal(config.deviceId, undefined);
+  assert.equal(config.extensionChangelogVersions, undefined);
+  const modelsConfig = JSON.parse(readFileSync(join(agent, 'models.json'))).providers;
+  assert.equal(modelsConfig.pilink, undefined);
+  const codex = modelsConfig['openai-codex'];
+  for (const id of ['gpt-6.1-sol', 'gpt-6-luna']) assert.equal(codex.modelOverrides[id].contextWindow, 500000);
+  for (const id of ['gpt-6.2-sol', 'gpt-6.2-astra']) {
+    assert.equal(codex.models.find(m => m.id === id)?.contextWindow, 500000);
+  }
+  assert.equal(config.packages.length, 17);
   assert(config.packages.every(p => /@(?:\d+\.\d+\.\d+|[a-f0-9]{40})$/.test(p.source ?? p)));
-  assert.equal(readFileSync(join(agent, 'system.md'), 'utf8'), readFileSync(join(root, 'agent/system.md'), 'utf8'));
+  for (const file of ['system.md', 'AGENTS.md', 'agents/sol.md', 'agents/settings.json', 'i-have-adhd.json', 'prompt-suggestions.json']) {
+    assert.equal(readFileSync(join(agent, file), 'utf8'), readFileSync(join(root, 'agent', file), 'utf8'));
+  }
   assert.equal(readdirSync(join(agent, 'skills')).length, 4);
   for (const name of readdirSync(join(agent, 'skills'))) assert(!lstatSync(join(agent, 'skills', name)).isSymbolicLink());
   assert(existsSync(join(agent, 'themes/prism.json')));
   assert(!existsSync(join(agent, 'auth.json')));
 });
 
-test('恢复内置代码定义插件，保留原始入口并备份已有副本', t => {
+test('恢复内置扩展，保留原始源码并备份已有副本', t => {
   const home = fixture(t), agent = restore(home);
-  const plugin = 'extensions/pi-read-symbol';
-  const manifest = JSON.parse(readFileSync(join(agent, plugin, 'package.json')));
-  assert.equal(manifest.version, '0.1.0');
-  assert.deepEqual(manifest.pi.extensions, ['./src/index.ts']);
-  for (const file of ['package.json', 'README.md', 'src/index.ts', 'src/symbols.ts']) {
-    assert.equal(readFileSync(join(agent, plugin, file), 'utf8'), readFileSync(join(root, 'agent', plugin, file), 'utf8'));
+  const guardrails = 'extensions/pi-guardrails';
+  assert.equal(
+    readFileSync(join(agent, 'extensions/file-links.ts'), 'utf8'),
+    readFileSync(join(root, 'agent/extensions/file-links.ts'), 'utf8')
+  );
+  for (const file of ['package.json', 'index.ts', 'logic.ts', 'guardrails.test.ts']) {
+    assert.equal(
+      readFileSync(join(agent, guardrails, file), 'utf8'),
+      readFileSync(join(root, 'agent', guardrails, file), 'utf8')
+    );
   }
-  write(join(agent, plugin, 'src/index.ts'), 'previous plugin');
+  write(join(agent, guardrails, 'index.ts'), 'previous plugin');
   restore(home);
   const backup = readdirSync(join(agent, 'backups'))[0];
-  assert.equal(readFileSync(join(agent, 'backups', backup, plugin, 'src/index.ts'), 'utf8'), 'previous plugin');
-  assert.equal(readFileSync(join(agent, plugin, 'src/index.ts'), 'utf8'), readFileSync(join(root, 'agent', plugin, 'src/index.ts'), 'utf8'));
+  assert.equal(readFileSync(join(agent, 'backups', backup, guardrails, 'index.ts'), 'utf8'), 'previous plugin');
+  assert.equal(readFileSync(join(agent, guardrails, 'index.ts'), 'utf8'), readFileSync(join(root, 'agent', guardrails, 'index.ts'), 'utf8'));
 });
 
 test('已有同名文件备份，认证、会话、私人记忆和非管理文件不变', t => {
@@ -112,6 +125,6 @@ test('install.sh 包列表解析兼容对象格式与字符串格式', () => {
   const out = spawnSync('node', ['-e', pkgExpr, join(root, 'agent/settings.json')], { encoding: 'utf8' });
   assert.equal(out.status, 0, out.stderr);
   const lines = out.stdout.trim().split(/\r?\n/);
-  assert.equal(lines.length, 16);
+  assert.equal(lines.length, 17);
   assert(lines.every(line => /^(?:npm|git):/.test(line)));
 });
