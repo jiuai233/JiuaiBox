@@ -1,6 +1,7 @@
 ---
 name: sol
-description: Implementation agent running on gpt-6.1-sol for normal tasks and approved oracle handoffs
+description: 后端与底层工程主力（gpt-6.1-sol，fast）。擅长接口、底层逻辑、状态/并发、数据结构与测试，做事严谨；短板是依赖精准指令，派活需写清文件、行号、边界与验收命令
+advertise: true
 acceptanceRole: writer
 model: openai-codex/gpt-6.1-sol
 fast: true
