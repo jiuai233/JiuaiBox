@@ -20,7 +20,7 @@ pi
 - **交互与提示词**：全局沟通风格 `system.md`、工程规范 `AGENTS.md`、子代理定义 `agents/sol.md` / `agents/hydrogen.md`、高思考等级、全屏界面、隐藏思考正文；ADHD 输出模式与下一句提示词预测由插件控制。
 - **配色**：Prism 深色主题，粉色强调、青色链接、紫色代码与彩虹思考状态栏。
 - **插件**：搜索与网页读取、任务清单、结构化提问、子代理、权限管理、压缩模型、工具循环中途压缩、状态栏、吞吐显示、工具标记、模型快速模式、WebSocket 恢复、下一句提示词预测、按名称读取代码定义的 `read_symbol`、Antigravity ACP、终端状态提醒，以及内置的 `file-links.ts` 与 `pi-guardrails` 扩展。
-- **技能**：前端设计（`frontend-design`）、无障碍（`better-accessibility`）、技术手册风格（`tech-manual-style`）与 OpenAI 订阅生图（`openai-subscription-image`，需 `uv` 与 `codex login`）；飞书认证与表格技能从官方源安装。
+- **技能**：前端设计（`frontend-design`）、无障碍（`better-accessibility`）、技术手册风格（`tech-manual-style`）、架构耦合体检（`audit-architecture-coupling`）与 OpenAI 订阅生图（`openai-subscription-image`，需 `uv` 与 `codex login`）；飞书认证与表格技能从官方源安装。
 - **细节设置**：OpenAI Codex 的 `gpt-6.2-sol`、`gpt-6.2-astra`、`gpt-6.1-sol`、`gpt-6-luna` 本地上下文窗口设为 500k；85% 上下文压缩水位、全局上下文继承子代理与搜索策略。
 
 500k 为 Pi 本地窗口覆盖值，服务端支持范围以提供商实际限制为准。

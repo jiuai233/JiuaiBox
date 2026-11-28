@@ -43,7 +43,7 @@ test('新电脑恢复配置、主题、固定插件与普通技能目录', t => 
   for (const file of ['system.md', 'AGENTS.md', 'agents/sol.md', 'agents/settings.json', 'i-have-adhd.json', 'prompt-suggestions.json']) {
     assert.equal(readFileSync(join(agent, file), 'utf8'), readFileSync(join(root, 'agent', file), 'utf8'));
   }
-  assert.equal(readdirSync(join(agent, 'skills')).length, 4);
+  assert.equal(readdirSync(join(agent, 'skills')).length, 5);
   for (const name of readdirSync(join(agent, 'skills'))) assert(!lstatSync(join(agent, 'skills', name)).isSymbolicLink());
   assert(existsSync(join(agent, 'themes/prism.json')));
   assert(!existsSync(join(agent, 'auth.json')));
