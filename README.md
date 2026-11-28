@@ -12,5 +12,6 @@
 - [Windows Terminal 个性化配置](./windows-terminal/README.md)
 - [Clash Verge SSH 直连规则](./clash-rules/README.md)
 - [技术手册风格 Skill（设计 token、组件与图表语法）](./skill/tech-manual-style/SKILL.md)
+- [架构耦合体检 Skill（MIT/Suh 公理分析、分波改造与收口复核）](./skill/audit-architecture-coupling/SKILL.md)
 
 以后每项内容单独放在自己的目录中，避免资源混在一起。
